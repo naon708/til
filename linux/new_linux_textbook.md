@@ -181,6 +181,35 @@ ls /bin/ba??
 ls /var /usr /bin
 ```
 
+## コマンドオプション
+
+```bash
+# 30桁文の横幅で表示するオプション
+ls -w 30
+
+# ロングオプション
+ls --width 30
+
+# この書き方でもOK
+ls --width=30
+```
+
+- `rails new –-database=postgresql` っぽい
+
+```bash
+# オプション確認
+<command name> --help
+```
+
+### コマンドTips
+
+```bash
+# 複数指定でファイルを連結できる
+cat /etc/crontab /etc/hostname
+```
+
+- `cat = concatenate`
+
 
 
 
