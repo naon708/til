@@ -210,6 +210,65 @@ cat /etc/crontab /etc/hostname
 
 - `cat = concatenate`
 
+```bash
+cp file1 file2 file3 dir1
+# directoryをコピーする場合はrオプションで再帰的にコピー
+cp -r dir1 dir2
+```
+
+```bash
+mv file1 file2 file3 dir1
+# mvはrオプションいらない
+mv dir1 dir2
+```
+
+## リンクを張る
+
+- ファイルに別名をつけること
+- ハードリンク
+    
+    ```bash
+    ln file1 file2
+    ```
+    
+    - ハードリンクで紐づけたファイルはすべて本物(実体)
+    - 紐づけたファイルすべて削除すると完全削除となる
+- シンボリックリンク
+    - ファイルの実体は1つ
+    
+      ```bash
+      ln -s file1 file2
+
+      ls -F
+      file1 file2@
+
+      ls -l
+      file2 -> file1
+      ```
+
+      ```bash
+      # シンボリックリンクの実体ファイルを削除
+      rm file1
+      ```
+    
+    - リンクが切れる
+    
+      <img width="944" alt="スクリーンショット 2023-05-21 23 43 38" src="https://github.com/naon708/til/assets/77439261/a85f0700-c4b0-4788-8489-318166f4b0f6">
+
+    
+
+### シンボリックリンクの使い道
+
+- 深いパスにエイリアスを付けて呼び出しやすくする
+- 複数バージョンのファイルが存在するとして、最新バージョンにlatestみたいなエイリアスを付けたりする
+
+  ```bash
+  # 既に存在するエイリアスを貼りなおす
+  ln -nfs ver1.0.9 latest
+
+  # リンク取り消し
+  unlink file1
+  ```
 
 
 
