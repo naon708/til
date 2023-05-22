@@ -270,5 +270,109 @@ mv dir1 dir2
   unlink file1
   ```
 
+## ファイルを探す
+
+### find
+
+- 実行時にディレクトリツリーを下ってファイルを検索する(ファイル数が多いと時間がかかる)
+
+```bash
+# findでワイルドカードを使う場合はクォートで囲む
+find . -name '*.txt'
+```
+
+- クォートで囲んだ文字列ではbashのパス名展開が行われない
+
+```bash
+# 条件のAND検索
+find . -type f -name '*.txt'
+```
+
+### locate
+
+- 事前に作られたファイルパスのデータベースを検索する(速い)
+
+```bash
+# locateコマンドを含むパッケージをインストール
+yum install mlocate
+
+# 検索用データベース作成
+updatedb
+```
+
+```bash
+# 大文字小文字を区別しない
+locate -i notes
+
+# ファイル名のみ
+locate -b python
+```
+
+```bash
+# OR検索
+locate bash doc
+
+# AND検索
+locate -A bash doc
+```
+
+## コマンドの使い方を調べる
+
+```bash
+cat --help
+man cat # 詳しく
+info cat # さらに詳しく
+```
+
+### 説明文の文字列で検索
+
+```bash
+man -k cron
+```
+
+### マニュアルのセクション
+
+```bash
+# セクション番号を確認
+man -wa crontab
+
+# マニュアルのどのセクションを見たいか指定
+man 1 crontab
+man 5 crontab
+```
+
+## コマンドの場所
+
+- Linuxではコマンドもファイルとして存在している
+- シェルがコマンド実行時に$PATHで設定された場所からコマンドを探してくれる
+
+```bash
+echo $PATH
+=> /usr/local/bin:/usr/bin:/usr/......   # これを サーチパス/パス と呼ぶ
+```
+
+### コマンド実行時、シェルがどのファイルを実行するのか確認する
+
+```bash
+which cat
+=> /bin/cat
+
+# すべての実行ファイルのパスを表示
+which -a cat
+```
+
+## コマンドのドキュメント
+
+- 日本語doc
+    - [http://linuxjm.osdn.jp/](http://linuxjm.osdn.jp/)
+
+```bash
+# 日本語に設定
+LANG=ja_JP.UTF-8
+
+# デフォルト(英語)に設定
+LANG=C
+```
+
 
 
