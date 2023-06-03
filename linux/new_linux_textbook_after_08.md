@@ -335,3 +335,96 @@ kill -l
 - コマンドの入出力先を「標準入出力」という形で抽象化しているため、入出力先をユーザーが自由に指定できる
 
 <img width="1156" alt="スクリーンショット 2023-06-01 23 27 00" src="https://github.com/naon708/til/assets/77439261/07f29faa-18f0-432e-a2fe-d1334d1cded1">
+
+
+## リダイレクト
+
+- 標準入出力先を変更する機能のこと
+
+### 標準入力のリダイレクト
+
+```bash
+# 入力リダイレクトを使った書き方
+cat < hello.txt
+
+# ファイル指定での書き方
+cat hello.txt
+```
+
+- catの本来の動作は「標準入力をそのまま標準出力する」
+- ファイル指定できるのはcatコマンドの利便性を考慮した機能
+- Linuxでコマンドを作る際は、ファイル指定ではなく標準入力から受け取る方法で作ったほうが汎用的で他のプログラムとの連携もしやすいのでそちらを推奨
+
+### 標準出力のリダイレクト
+
+```bash
+# コマンドの実行結果をファイルに出力する
+ls > ls_result.txt
+```
+
+### 標準エラー出力のリダイレクト
+
+- 標準出力と標準エラー出力は別々のチャネルである
+
+```bash
+# 標準エラー出力のリダイレクトは「2>」を使う
+ls /xxxxx 2> error.txt
+
+# 同時に指定もできる
+ls /xxxxx > list.txt 2> error.txt
+
+# 標準出力と標準エラー出力をresult.txtにまとめてリダイレクト
+ls /xxxxx > result.txt 2>&1
+```
+
+- `&1`の「1」はLinuxで定義されている標準入出力の数値
+    - `&`はファイルディスクリプタ(File Descriptor)と呼ばれるOSで使用される仕組みのこと
+    - プロセスが入出力先(ファイル、ディスプレイなど)にアクセスするための識別子
+
+| 入出力チャネル | 割り当てられている数値 |
+| --- | --- |
+| 標準入力 | 0 |
+| 標準出力 | 1 |
+| 標準エラー出力 | 2 |
+
+```bash
+# 上書きではなく末尾に追加
+echo hoge >> hoge.txt
+```
+
+### /dev/null
+
+- データの破棄、出力の抑制(不要なメッセージの非表示)、動作テスト、入力の終了などに使われる特別なファイル
+    - 入力先に指定しても何も内容を返さない
+    - 出力先に指定してもどこにも保存されずに消える
+
+**使用例**
+
+```bash
+# ルートディレクトリと存在しないディレクトリを指定
+ls / /xxxx
+
+# ルートディレクトリ配下の情報とエラーメッセージが両方出力される
+/:
+bin  boot  dev  etc  home  lib  lib64  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
+
+ls: cannot access '/xxxx': No such file or directory
+```
+
+```bash
+# 標準出力先を/dev/nullにすると標準出力が消えてエラーのみ表示できる
+ls / /xxxx > /dev/null
+
+ls: cannot access '/xxxx': No such file or directory
+```
+
+```bash
+# 標準エラー出力先を/dev/nullにすると標準エラー出力が消えて標準出力のみ表示できる
+ls / /xxxx 2> /dev/null
+
+/:
+bin  boot  dev  etc  home  lib  lib64  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
+```
+- 「エラーメッセージだけ見たい」等の不要なログを非表示にしたい場合などに重宝する
+
+
