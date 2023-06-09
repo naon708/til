@@ -429,3 +429,22 @@ bin  boot  dev  etc  home  lib  lib64  media  mnt  opt  proc  root  run  sbin  s
 - 「エラーメッセージだけ見たい」等の不要なログを非表示にしたい場合などに重宝する
 
 
+## パイプライン
+
+```bash
+# historyコマンドの標準出力をlessコマンドの標準入力とする
+history | less
+```
+
+```bash
+# いくつでも繋げられる
+ls -l /etc | cat -n | less
+```
+
+```bash
+# 標準エラー出力も渡したいとき
+ls -l / /xxxx 2>&1 | less
+```
+
+
+
