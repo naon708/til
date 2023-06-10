@@ -474,6 +474,7 @@ du -b /bin/* | sort -n | tac | head -n 3
 ```
 
 - 単純なコマンドを組み合わせて複雑な処理を行う
+- SQLのorderとかlimitみたいな感覚
 
 ### Tips
 
@@ -481,6 +482,50 @@ du -b /bin/* | sort -n | tac | head -n 3
 - wc ⇒ word count
 - tac ⇒ catの逆
 - grep ⇒ Global Regular Expression Print
+
+
+
+## テキスト処理
+
+### wc
+
+```bash
+# lオプションで行数だけ表示
+wc -l hello.txt
+```
+
+### sort
+
+```bash
+# 「ps x」の出力結果の第5フィールドでソート
+ps x | sort -k 5
+```
+
+- psコマンドの出力はそれぞれの項目がスペース区切りとなっていて、その各項目を「第◯フィールド」と呼ぶ
+- sortコマンドはASCIIコードの順番でソートされる(小文字より大文字のほうが若い)
+
+```bash
+# /bin配下のファイルサイズ(数値)が大きい順に10件表示
+ls -l /bin/ | sort -k 5 -rn | head
+```
+
+### uniq
+
+- 連続していない行は重複除去の対象外なので注意
+- 基本的にsortと組み合わせて使うのが良い
+
+```bash
+# 単純に重複行を取り除くだけならsortのuオプションで良さそう
+sort -u some_data.txt
+```
+
+```bash
+# 重複行数を表示
+sort some_data.txt | uniq -c
+
+# 出現回数でランキング出力してファイルに書き出し
+sort some_data.txt | uniq -c | sort -rn >> count.txt
+```
 
 
 
