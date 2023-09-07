@@ -103,5 +103,15 @@ PostgreSQL 12.14 (Debian 12.14-1.pgdg110+1) on x86_64-pc-linux-gnu, compiled by 
 
 ---
 
+### メソッド名について: `verify_**`
+- 配列を渡して何かしらの検証を行って配列で返すメソッドに`verify_**_uuids`という命名をしたが結局`filter_**_uuids`にした
+```ruby
+def filter_any_uuids(hoge_uuids, foo_uuids)
+  return [] if hoge_uuids.empty?
 
+  hoge_uuids.select { |uuid| some_kind_of_verify }
+end
+```
+- `verify_**`だと検証結果がbooleanで返ることを先見させてしまうため適してなさそうとの指摘をいただいた
+- 「何かしらの検証をして絞り込んだものを返す」というニュアンスを持たせて`filter_**`を採用した
 
