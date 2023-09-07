@@ -79,3 +79,47 @@ const deleteRepository = () => { console.log("Successfully deleted repository") 
 // 削除ボタンを想定したモーダルを開く
 window.confirm("Delete this repository") ? openModal() : console.log("Nothing happened")
 ```
+
+## Web API 超入門
+```js
+///// async/await /////
+/*
+  メジャーな書き方
+  非同期関数として定義
+*/
+async function callApi() {
+  const res = await fetch("https://jsonplaceholder.typicode.com/users");
+  const users = await res.json();
+  console.log(users);
+}
+callApi();
+
+
+///// Promise chain /////
+/* 若干古い */
+function callApi() {
+  fetch("https://jsonplaceholder.typicode.com/users")
+    .then(response => response.json())
+    .then(json => console.log(json))
+}
+callApi();
+
+
+///// XMLHttpRequest /////
+/* 記述が複雑な分、進捗がわかりやすい */
+function callApi() {
+  // インスタンスを生成
+  const xhr = new XMLHttpRequest();
+  // HTTPメソッドとURLを指定
+  xhr.open("GET", "https://jsonplaceholder.typicode.com/users");
+  // レスポンスのタイプ
+  xhr.responseType = "json";
+  // APIにリクエストを送る
+  xhr.send();
+  // 返り値の処理
+  xhr.onload = function() {
+    console.log(xhr.response)
+  }
+}
+callApi();
+```
