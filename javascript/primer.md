@@ -132,10 +132,88 @@ const resultB = methodB　     // 参照: methodBそのものを代入(関数オ
 ## addEventListenerには関数の実行結果ではなく関数オブジェクト(function)を渡す
 - 下記のNGの方で書いており、意図した挙動にならなくて詰まった…
 - addEventListenerの第二引数には実際には「呼び出し可能なオブジェクト」を渡す必要がある
-```
+```js
 // NG
 window.addEventListener("load", listUsers())
 
 // OK
 window.addEventListener("load", listUsers)
+```
+
+## ハンズオン (https://youtu.be/Oi38X7mNixE?si=prO7fgEtibQ3RHKp)
+```js
+/***** 自作 *****/
+
+// Functions
+async function fetchUsers() {
+  const res = await fetch("https://jsonplaceholder.typicode.com/users")
+  const users = await res.json()
+  return users
+}
+
+async function getUserNames() {
+  const users = await fetchUsers()
+  const userNames = []
+
+  users.forEach(user => {
+    userNames.push(user.name)
+  });
+  return userNames
+}
+
+async function initialDisplay() {
+  const userNames = await getUserNames()
+
+  userNames.forEach((name, index) => {
+    const personId = document.getElementById(`person_${index += 1}`)
+    personId.textContent = name
+  });
+}
+
+// Main
+initialDisplay()
+
+// Click events
+const button = document.getElementById("button")
+button.addEventListener("click", async function() {
+  const okawariUserNames = await getUserNames()
+  console.log(okawariUserNames)
+  const ol = document.getElementById("nameList")
+
+  okawariUserNames.forEach((name) => {
+    console.log(name)
+    const li = document.createElement("li")
+    li.appendChild(document.createTextNode(name))
+    ol.appendChild(li)
+  })
+})
+
+
+/***** リファクタ後 *****/
+
+// DOM
+const ol = document.getElementById("ol")
+const button = document.getElementById("button")
+
+// Functions
+const createList = (user) => {
+  const li = document.createElement("li")
+  li.innerText = user.name
+  ol.appendChild(li)
+}
+
+const fetchUsers = async () => {
+  const res = await fetch("https://jsonplaceholder.typicode.com/users")
+  const users = await res.json()
+  return users
+}
+
+const listUsers = async () => {
+  const users = await fetchUsers()
+  users.forEach(createList)
+}
+
+// Events
+window.addEventListener("load", listUsers)
+button.addEventListener("click", listUsers)
 ```
