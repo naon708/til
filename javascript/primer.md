@@ -123,3 +123,19 @@ function callApi() {
 }
 callApi();
 ```
+
+## 関数の実行と参照の違い / `method` と `method()` の違い
+```js
+const resultA = methodA() 　　　 // 実行: methodAの実行結果を代入(関数の返り値)
+const resultB = methodB　     // 参照: methodBそのものを代入(関数オブジェクト)
+```
+## addEventListenerには関数の実行結果ではなく関数オブジェクト(function)を渡す
+- 下記のNGの方で書いており、意図した挙動にならなくて詰まった…
+- addEventListenerの第二引数には実際には「呼び出し可能なオブジェクト」を渡す必要がある
+```
+// NG
+window.addEventListener("load", listUsers())
+
+// OK
+window.addEventListener("load", listUsers)
+```
