@@ -235,8 +235,9 @@ button.addEventListener("click", listUsers)
 ref. https://hackmd.io/@iFxVSfmNQBi89A13TWdmpw/HJYvmQLQq
 
 ### common.js と ECMAScript の違い
-・CommonJSで書かれたJSは、ChromeやSafariなどのブラウザで動かない。逆にECMAScriptでは動く。
-・ECMAScriptがモジュールシステム(ESM)以外の文法も定めている規格なのに対して、CommonJSはブラウザ外でのモジュールシステムに焦点を当てている規格
+- CommonJSで書かれたJSは、ChromeやSafariなどのブラウザで動かない。逆にECMAScriptでは動く。
+- ECMAScriptがモジュールシステム(ESM)以外の文法も定めている規格なのに対して、CommonJSはブラウザ外でのモジュールシステムに焦点を当てている規格。
+- ただCommonJSは、機能というよりかは「サーバー側JavaScriptの仕様を統一しよう」というプロジェクトと捉えた方が良さそうで、Node.jsが独自の進化を遂げCommonJSのPJは動いていない状態。
 
 ```js
 // CommonJS: ChromeやSafariなどのブラウザで動かない、主ににNode.jsなどのサーバサイドで使用される。
