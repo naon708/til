@@ -232,15 +232,18 @@ button.addEventListener("click", listUsers)
 
 > 2009年ごろ、JavaScriptでサーバサイドも作りたいという人が現れたが、JavaScriptはブラウザ上で動かすために生まれた言語のため、 「モジュール定義や読み込みもない、標準入出力もない、File I/Oもない、標準的に欲しいものが色々ない。」 という状況の中で、Node.jsのようなサーバサイドでJavaScriptが動く環境が多く生まれた。「それぞれで、勝手にAPIを作るのではなく、標準的なAPIの仕様を決めて、それに沿った実装にしよう、そうすれば、色んなサーバサイドJavaScript環境で動くだろう。」と言って始まったのがCommonJS
 
+ref. https://hackmd.io/@iFxVSfmNQBi89A13TWdmpw/HJYvmQLQq
+
 ### common.js と ECMAScript の違い
 ・CommonJSで書かれたJSは、ChromeやSafariなどのブラウザで動かない。逆にECMAScriptでは動く。
 ・ECMAScriptがモジュールシステム(ESM)以外の文法も定めている規格なのに対して、CommonJSはブラウザ外でのモジュールシステムに焦点を当てている規格
 
-```
+```js
 // CommonJS: ChromeやSafariなどのブラウザで動かない、主ににNode.jsなどのサーバサイドで使用される。
 
 require　＝　CommonJS
 ```
+```js
 // ECMAScript: ChromeやSafariなどのブラウザで動く、主にクライアントサイド(Webブラウザ)で使用される
 
 import　＝　ECMAScript
