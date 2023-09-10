@@ -220,6 +220,8 @@ button.addEventListener("click", listUsers)
 
 
 ## ECMAScript と CommonJS
+※ そもそも概念が異なるものなので比較するのは微妙なところ(比べるとしたら`ESModules`と`CommonJS`)
+
 ### ECMAScript
 - JavaScriptの中核となる言語仕様
 - ブラウザ上で動くJavaScript(クライアントサイドJavaScript)には、Node.jsにはないメソッド(e.g. `window.alert()`, `document.getElementById()`)があるし、逆も然り
@@ -228,7 +230,7 @@ button.addEventListener("click", listUsers)
 ### CommonJS
 - JavaScriptのモジュールシステムの一つ
   - JavaScriptのコードを複数のファイルに分割し、その中で特定の変数や関数を別のファイルから使い回したり、特定のスコープ内で隠蔽したりする仕組みのこと
-  - e.g. `CommonJS`, `ECMAScript 20** Modules`
+  - e.g. `CommonJS`, `ECMAScript 20** Modules`, `AMD`
 
 > 2009年ごろ、JavaScriptでサーバサイドも作りたいという人が現れたが、JavaScriptはブラウザ上で動かすために生まれた言語のため、 「モジュール定義や読み込みもない、標準入出力もない、File I/Oもない、標準的に欲しいものが色々ない。」 という状況の中で、Node.jsのようなサーバサイドでJavaScriptが動く環境が多く生まれた。「それぞれで、勝手にAPIを作るのではなく、標準的なAPIの仕様を決めて、それに沿った実装にしよう、そうすれば、色んなサーバサイドJavaScript環境で動くだろう。」と言って始まったのがCommonJS
 
@@ -253,3 +255,11 @@ import　＝　ECMAScript
 
 ## パッケージの依存関係を可視化してくれるサイト
 - https://npm.anvaka.com/
+
+## ランタイムとは？
+- ブラウザで実際に動くタイミングのこと
+- モジュールバンドラー登場以降は、開発時に書いてるコードとランタイムのコードが異なるためそれを表現するために使う用語
+
+## 事前にブラウザ用に変換
+- Bundler
+- 
