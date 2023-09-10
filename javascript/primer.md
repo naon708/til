@@ -217,3 +217,31 @@ const listUsers = async () => {
 window.addEventListener("load", listUsers)
 button.addEventListener("click", listUsers)
 ```
+
+
+## ECMAScript と CommonJS
+### ECMAScript
+- JavaScriptの中核となる言語仕様
+- ブラウザ上で動くJavaScript(クライアントサイドJavaScript)には、Node.jsにはないメソッド(e.g. `window.alert()`, `document.getElementById()`)があるし、逆も然り
+- どの実行環境でも動作する共通の仕様
+
+### CommonJS
+- JavaScriptのモジュールシステムの一つ
+  - JavaScriptのコードを複数のファイルに分割し、その中で特定の変数や関数を別のファイルから使い回したり、特定のスコープ内で隠蔽したりする仕組みのこと
+  - e.g. `CommonJS`, `ECMAScript 20** Modules`
+
+> 2009年ごろ、JavaScriptでサーバサイドも作りたいという人が現れたが、JavaScriptはブラウザ上で動かすために生まれた言語のため、 「モジュール定義や読み込みもない、標準入出力もない、File I/Oもない、標準的に欲しいものが色々ない。」 という状況の中で、Node.jsのようなサーバサイドでJavaScriptが動く環境が多く生まれた。「それぞれで、勝手にAPIを作るのではなく、標準的なAPIの仕様を決めて、それに沿った実装にしよう、そうすれば、色んなサーバサイドJavaScript環境で動くだろう。」と言って始まったのがCommonJS
+
+### common.js と ECMAScript の違い
+・CommonJSで書かれたJSは、ChromeやSafariなどのブラウザで動かない。逆にECMAScriptでは動く。
+・ECMAScriptがモジュールシステム(ESM)以外の文法も定めている規格なのに対して、CommonJSはブラウザ外でのモジュールシステムに焦点を当てている規格
+
+```
+// CommonJS: ChromeやSafariなどのブラウザで動かない、主ににNode.jsなどのサーバサイドで使用される。
+
+require　＝　CommonJS
+```
+// ECMAScript: ChromeやSafariなどのブラウザで動く、主にクライアントサイド(Webブラウザ)で使用される
+
+import　＝　ECMAScript
+```
