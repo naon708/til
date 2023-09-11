@@ -287,3 +287,49 @@ import　＝　ECMAScript
   - JavaScriptコードを異なる環境で動かすための事前準備
   - Bundle & Compile
   - e.g. `Webpack`, `Vite`, `Rollup`
+
+
+## named export/import
+- namedのときは`{}`で囲う
+```js
+/***** index.js *****/
+
+// imports
+import { name, name2, displayLog, log } from "./user.js"
+
+// using
+document.body.textContent = name + name2
+displayLog(name)
+log(name2)
+
+/***** user.js *****/
+
+// variables
+const name = "ピカ"
+const name2 = "チュウ"
+
+// functions
+export function displayLog(value) {
+  console.log(value)
+}
+export const log = value => console.log(value)
+
+// exports
+export { name, name2 }
+```
+### エイリアスを付けられる
+- named export/import すると名前が被ることがある
+  > Identifier 'name' has already been declared
+- importする側で使うことが多い
+  ```js
+  import { name, logger } from "./user.js"
+  import { name as anotherName } from "./user2.js"
+  ```
+
+## default export/import
+- defaultのときはむき出し
+  ```js
+  export default name
+  /* ~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+  import name from "./user.js"
+  ```
