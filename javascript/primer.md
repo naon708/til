@@ -333,3 +333,4 @@ export { name, name2 }
   /* ~~~~~~~~~~~~~~~~~~~~~~~~~~ */
   import name from "./user.js"
   ```
+- 使えるのは1モジュールにつき1回のみ
