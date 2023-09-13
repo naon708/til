@@ -373,6 +373,7 @@ export default function(value) {
 
 ## Namespace import
 ```js
+// someModule.js
 const someVariable = "something"
 const someFunction = value => console.log(value)
 
