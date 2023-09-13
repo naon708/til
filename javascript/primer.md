@@ -309,13 +309,13 @@ const name = "ピカ"
 const name2 = "チュウ"
 
 // functions
-export function displayLog(value) {
+function displayLog(value) {
   console.log(value)
 }
-export const log = value => console.log(value)
+const log = value => console.log(value)
 
 // exports
-export { name, name2 }
+export { name, name2, displayLog, log }
 ```
 ### エイリアスを付けられる
 - named export/import すると名前が被ることがある
@@ -325,8 +325,14 @@ export { name, name2 }
   import { name, logger } from "./user.js"
   import { name as anotherName } from "./user2.js"
   ```
+### 宣言とexportを同時にしてもよい
+```js
+export const name = "ピカ"
+export const log = value => console.log(value)
+```
 
 ## default export/import
+- 前提、そこまで使う機会ない。フレームワークのお作法として使われてるくらい(?)
 - defaultのときはむき出し
   ```js
   export default name
@@ -347,4 +353,20 @@ import name from "./user.js"
 
 //　なのでexport defaultで指定した変数名以外の名前でimportしてもOK
 import anotherName from "./user.js"
+```
+
+### `default export`の場合は変数は宣言とexportを同時に行えない
+```js
+// NG
+export default const name = "ピカ"
+
+// OK(関数はOK, 関数式はダメっぽい)
+export default function log(value) {
+  console.log(value)
+}
+
+// OK(関数名無くてもOK)
+export default function(value) {
+  console.log(value)
+}
 ```
