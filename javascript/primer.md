@@ -334,3 +334,17 @@ export { name, name2 }
   import name from "./user.js"
   ```
 - 使えるのは1モジュールにつき1回のみ
+
+### `named export`だと変数自体を渡すが、`default export`では変数を評価した値を渡す
+```js
+// user.js
+const name = "ほげ"
+export default name
+```
+```js
+// このnameには変数を評価した値「ほげ」が直接渡されている
+import name from "./user.js"
+
+//　なのでexport defaultで指定した変数名以外の名前でimportしてもOK
+import anotherName from "./user.js"
+```
