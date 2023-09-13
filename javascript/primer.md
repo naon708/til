@@ -289,7 +289,7 @@ import　＝　ECMAScript
   - e.g. `Webpack`, `Vite`, `Rollup`
 
 
-## named export/import
+## Named export/import
 - namedのときは`{}`で囲う
 ```js
 /***** index.js *****/
@@ -331,7 +331,7 @@ export const name = "ピカ"
 export const log = value => console.log(value)
 ```
 
-## default export/import
+## Default export/import
 - 前提、そこまで使う機会ない。フレームワークのお作法として使われてるくらい(?)
 - defaultのときはむき出し
   ```js
@@ -369,4 +369,19 @@ export default function log(value) {
 export default function(value) {
   console.log(value)
 }
+```
+
+## Namespace import
+```js
+const someVariable = "something"
+const someFunction = value => console.log(value)
+
+export { someVariable, someFunction }
+```
+```js
+// someModule.jsモジュールでexportされたすべてのメンバーがallMembersオブジェクトに集約される
+import * as allMembers from "./someModule.js"
+
+allMembers.someVariable
+allMembers.someFunction
 ```
