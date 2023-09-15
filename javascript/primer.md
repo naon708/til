@@ -410,3 +410,22 @@ export { foo, bar, baz }
 ```
 - Re-exportだけで７種類くらい書き方あるけど読めばわかるから記憶しなくてよさそう
 - `default`は予約語のため、`import { default } from "base.js"`みたいな書き方はできない
+
+### ライブラリってこんな感じかな
+- `user-actions`というライブラリがあるとする
+```js
+// index.js
+import * as userAction from "./user-actions/index"
+
+console.log(userActions.like, userActions.subscribe, userActions.notify)
+
+// user-actions/index.js
+// 複数モジュールを集約
+export * from "./like"
+export * from "./subscribe"
+export * from "./notify"
+
+// user-actions/like.js
+// user-actions/subscribe.js
+// user-actions/notify.js
+```
