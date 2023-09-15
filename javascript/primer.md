@@ -386,3 +386,27 @@ import * as allMembers from "./someModule.js"
 allMembers.someVariable
 allMembers.someFunction
 ```
+
+## Re-exporting
+- `親モジュール - 子モジュール - 孫モジュール` の関係で、孫モジュールがexportしたものを子モジュールで再度exportできる
+  - importする側が親、importされる側が子
+- この機能のおかげで、様々なモジュールからの様々なエクスポートを集約した1つのモジュールを作成することができる
+
+```js
+// parent.js
+import * as someModule from "child.js"
+
+console.log(someModule.foo)
+
+// child.js
+export * from "grandchild.js"
+
+// grandchild.js
+const foo = "foo"
+const bar = "bar"
+const baz = "baz"
+
+export { foo, bar, baz }
+```
+- Re-exportだけで７種類くらい書き方あるけど読めばわかるから記憶しなくてよさそう
+- `default`は予約語のため、`import { default } from "base.js"`みたいな書き方はできない
