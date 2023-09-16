@@ -594,7 +594,7 @@ yarn global add sass
   ```
 - sassコマンドを使うにはパスを通す必要がありそう
 
-### 実行
+### 実行 (scssをcssにビルドするコマンド)
 - `~/.yarn/bin/sass style.scss:style.css`
 - パスを通せば`sass style.scss:style.css`でいけると思う
 
@@ -616,3 +616,12 @@ yarn add sass
 ### チーム開発時
 - グローバルにインストールしたnode_modulesだとメンバー間でバージョンの乖離が起き得る
 - 共有されている`yarn.lock`等を元にローカルにインストールしたnode_modulesを参照することで、チームでバージョンを固定できる
+
+
+## npm script
+```json
+"scripts": {
+  "build": "sass"
+},
+```
+- `sass`とするだけで勝手にnode_modules/.bin配下を見てくれる
