@@ -490,6 +490,7 @@ yarn add jquery
 - package.json, yarn.lockが更新され、node_modulesディレクトリにjQueryが追加される
 - dist → distribution(配布)
 
+### CDNと比較
 ```html
   <!------- jQuery読み込み ------->
   <!-- Yarn -->
@@ -503,6 +504,12 @@ yarn add jquery
     "jquery": "^3.7.1"
   }
   ```
+
+### インストール済みパッケージのバージョン変更
+  - package.jsonのバージョンを書き換えて`yarn`コマンド実行
+  - `yarn upgrade jquery --latest`コマンドとかでも可能
+  - `yarn add jquery@3.7.1`のようにバージョンを直接指定して追加すれば勝手に更新してくれる
+  
 
 ## CDN / Content Delivery Network
 > ウェブ上でコンテンツ（画像、ビデオ、スタイルシート、JavaScriptファイルなど）を効率的に配信するためのネットワークインフラストラクチャです。
