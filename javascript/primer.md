@@ -583,4 +583,24 @@ div h1 {
 {"version":3,"sourceRoot":"","sources":["style.scss"],"names":[],"mappings":"AAAA;EACE;;AAEA;EACE","file":"style.css"}
 ```
 
+## グローバルインストール
+```bash
+yarn global add sass
+```
+- `which sass`したらsass not foundと言われた
+  ```bash
+  # シンボリックリンク
+  lrwxr-xr-x  1 user01  staff  48  9 16 22:55 /Users/username/.yarn/bin/sass@ -> ../../.config/yarn/global/node_modules/.bin/sass
+  ```
+- sassコマンドを使うにはパスを通す必要がありそう
 
+### 実行
+- `~/.yarn/bin/sass style.scss:style.css`
+- パスを通せば`sass style.scss:style.css`でいけると思う
+
+### 余談
+```bash
+# globalでインストールしたパッケージはここに格納されるっぽい
+ls /Users/user_name/.config/yarn/global/
+node_modules/ package.json  yarn.lock
+```
