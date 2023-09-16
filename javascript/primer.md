@@ -480,15 +480,36 @@ const myInstance = new MyClass(); // 親モジュールでアクセスできな�
 - 各種ブラウザ対応(Polyfill)やログを送る等の処理を噛ませたいときに使うらしい
 
 
-## パッケージ管理
+## パッケージ管理ツール
 - そもそもライブラリをダウンロードする方法は主に3つ
-  - パッケージ管理ツール or CDN or ローカルにダウンロード
-### CDN / Content Delivery Network
+  - パッケージ管理ツール or CDN or ローカルにサイトからダウンロード
+ 
+```shell
+yarn add jquery
+```
+- package.json, yarn.lockが更新され、node_modulesディレクトリにjQueryが追加される
+- dist → distribution(配布)
+
+```html
+  <!------- jQuery読み込み ------->
+  <!-- Yarn -->
+  <script src="node_modules/jquery/dist/jquery.min.js"></script>
+  <!-- Google CDN -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+```
+- CDNの方はURLにバージョンが記載されているが、yarnの場合は`package.json`, `yarn.lock`で管理されている
+  ```json
+  "dependencies": {
+    "jquery": "^3.7.1"
+  }
+  ```
+
+## CDN / Content Delivery Network
 > ウェブ上でコンテンツ（画像、ビデオ、スタイルシート、JavaScriptファイルなど）を効率的に配信するためのネットワークインフラストラクチャです。
 >
 > CDNは世界中に分散されたサーバー群からなり、ユーザーに最も近い地理的位置にあるサーバーからコンテンツを配信します。
 
-jQueryの例
+### jQueryを使用したサンプルコード
 ```html
 <body>
   <h1>テスト</h1>
@@ -516,7 +537,7 @@ jQueryの例
   - CDNベンダーのサーバーがダウンするとWebページが壊れる可能性がある
   - 信頼できないCDNから読み込むとセキュリティリスクが発生する
 
-**各ベンダーがCDNを提供する意図としてはこんなものがある**
+### 各ベンダーがCDNを提供する意図としてはこんなものがある
 - 広告とブランド: 無料でCDNを提供することでその企業やサービスに対する認知度が上がる
 - 市場調査や製品開発: どんなコンテンツがどれほどの頻度でアクセスされているか等のデータを収集できる
 - コミュニティ: OSSとして技術コミュニティへの貢献
