@@ -134,3 +134,13 @@ git diff --name-only --cached | grep '\.rb$' | pbcopy && bundle exec rubocop -A 
 1. 範囲選択
 2. 表示形式→条件付き書式
 3. カスタム数式の「値または数式」に`=MOD(ROW(),2)=0`を入力→色を選択して完了
+
+---
+
+## コンストラクターとは
+- インスタンスを生成するタイミングで実行されるメソッドのこと
+- オブジェクト指向言語の文脈
+- Rubyでいうところの`Object#initialize`
+
+---
+
