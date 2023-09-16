@@ -478,3 +478,46 @@ const myInstance = new MyClass(); // 親モジュールでアクセスできな�
 ### まとめ
 - 副作用モジュールのトップレベルのコードは実行はされるけどアクセスできない
 - 各種ブラウザ対応(Polyfill)やログを送る等の処理を噛ませたいときに使うらしい
+
+
+## パッケージ管理
+- そもそもライブラリをダウンロードする方法は主に3つ
+  - パッケージ管理ツール or CDN or ローカルにダウンロード
+### CDN / Content Delivery Network
+> ウェブ上でコンテンツ（画像、ビデオ、スタイルシート、JavaScriptファイルなど）を効率的に配信するためのネットワークインフラストラクチャです。
+>
+> CDNは世界中に分散されたサーバー群からなり、ユーザーに最も近い地理的位置にあるサーバーからコンテンツを配信します。
+
+jQueryの例
+```html
+<body>
+  <h1>テスト</h1>
+
+  <!-- Google CDN -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+  <!-- jQuery CDN -->
+  <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+
+  <!-- CDNJS CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+  <script>
+    // jQueryの記述
+    $('h1').css("color", "green");
+  </script>
+</body>
+```
+- 利点
+  - 地理的に分散されているため高速
+  - ブラウザにダウンロードされたファイルはキャッシュされるため高速かつサーバーの負荷も少ない
+  - ライブラリが共通して使われていれば、キャッシュが効くので他のWebサイトの読み込みも早くなる
+- 注意点
+  - CDNベンダーのサーバーがダウンするとWebページが壊れる可能性がある
+  - 信頼できないCDNから読み込むとセキュリティリスクが発生する
+
+**各ベンダーがCDNを提供する意図としてはこんなものがある**
+- 広告とブランド: 無料でCDNを提供することでその企業やサービスに対する認知度が上がる
+- 市場調査や製品開発: どんなコンテンツがどれほどの頻度でアクセスされているか等のデータを収集できる
+- コミュニティ: OSSとして技術コミュニティへの貢献
+
