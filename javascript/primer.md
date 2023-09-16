@@ -549,3 +549,38 @@ yarn add jquery
 - 市場調査や製品開発: どんなコンテンツがどれほどの頻度でアクセスされているか等のデータを収集できる
 - コミュニティ: OSSとして技術コミュニティへの貢献
 
+
+## `*.css.map`ファイル
+- cssファイルとscssファイルをマッピングしてデバッグし易くするもの
+- mapファイルがあることで、ブラウザのDevToolsで確認できるcssファイルから、scssのファイルや行数を特定できる
+
+### `path/to/sass style.scss:style.css`実行
+- cssファイルとmapファイルが生成された
+
+```scss
+// style.scss
+div {
+  background-color: aqua;
+
+  h1 {
+    color: coral;
+  }
+}
+```
+```css
+/* style.css */
+div {
+  background-color: aqua;
+}
+div h1 {
+  color: coral;
+}
+
+/*# sourceMappingURL=style.css.map */
+```
+```js
+// style.css.map
+{"version":3,"sourceRoot":"","sources":["style.scss"],"names":[],"mappings":"AAAA;EACE;;AAEA;EACE","file":"style.css"}
+```
+
+
