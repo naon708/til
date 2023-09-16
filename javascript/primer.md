@@ -604,3 +604,15 @@ yarn global add sass
 ls /Users/user_name/.config/yarn/global/
 node_modules/ package.json  yarn.lock
 ```
+
+## ローカルインストール
+```shell
+yarn add sass
+```
+
+```shell
+./node_modules/.bin/sass style.scss:style.css
+```
+### チーム開発時
+- グローバルにインストールしたnode_modulesだとメンバー間でバージョンの乖離が起き得る
+- 共有されている`yarn.lock`等を元にローカルにインストールしたnode_modulesを参照することで、チームでバージョンを固定できる
