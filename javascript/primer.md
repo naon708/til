@@ -658,3 +658,9 @@ npm run build:css sample.scss sample.css
 ## serve
 - https://github.com/vercel/serve
   - npxを利用することで`npx serve`でローカルサーバーを立ち上げられる
+
+
+## Babel
+- ESバージョン解決以外にもTypeScriptやJSXもBabelで変換できる
+- Babelを試す
+  - https://babeljs.io/repl
