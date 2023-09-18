@@ -619,9 +619,22 @@ yarn add sass
 
 
 ## npm script
+- `./node_modules/.bin/sass style.scss:style.css`のようなスクリプトを、簡潔な書き方で定義できる
 ```json
 "scripts": {
-  "build": "sass"
+  "build:css": "sass",
+  "hoge": "echo ほげ",
+  "date": "date"
 },
 ```
-- `sass`とするだけで勝手にnode_modules/.bin配下を見てくれる
+※ 値を`sass`とするだけで勝手にnode_modules/.bin配下を見てくれる
+
+```shell
+yarn build:css sample.scss sample.css
+
+# npmコマンドでも動く
+npm run build:css sample.scss sample.css
+```
+
+
+
