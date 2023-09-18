@@ -664,3 +664,51 @@ npm run build:css sample.scss sample.css
 - ESバージョン解決以外にもTypeScriptやJSXもBabelで変換できる
 - Babelを試す
   - https://babeljs.io/repl
+
+## Webpack
+- モジュールバンドラー
+- ひとことで表すと「複数モジュール(ファイル)をひとまとめにしてくれるツール」
+- モジュール同士の依存関係を解決し、ブラウザで動くようにしてくれる
+  - sassとかcjs等そのままではブラウザで動かないファイルを変換する
+  - 画像の最適化
+  - ファイルの圧縮
+  - etc...
+
+<img src="https://github.com/naon708/til/assets/77439261/a06a47b5-0119-4c63-8fcc-cca0bc89e177" alt="webpack-image" width="80%" />
+
+## `yarn webpack`
+- ビルドコマンド
+
+```shell
+yarn webpack --mode=development
+
+asset bundle.js 4.06 KiB [emitted] (name: main)
+runtime modules 670 bytes 3 modules
+cacheable modules 89 bytes
+  ./src/index.js 35 bytes [built] [code generated]
+  ./src/bar.js 54 bytes [built] [code generated]
+webpack 5.88.2 compiled successfully in 77 ms
+✨  Done in 3.03s.
+```
+
+## 開発用と本番用のバンドルファイル(ビルド後のファイル)の違い
+```js
+// --mode=development
+
+/******/ (() => { // webpackBootstrap
+/******/ 	"use strict";
+/******/ 	var __webpack_modules__ = ({
+
+/***/ "./src/bar.js":
+/*!********************!*\
+  !*** ./src/bar.js ***!
+  \********************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+```
+- ブラウザでのデバッグに必要な情報等も記載されている状態
+```js
+// --mode=production
+
+(()=>{"use strict";console.log("bar")})();
+```
+- 余計な記述を排除して完全に最適化されている状態
