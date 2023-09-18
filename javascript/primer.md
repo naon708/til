@@ -598,12 +598,20 @@ yarn global add sass
 - `~/.yarn/bin/sass style.scss:style.css`
 - パスを通せば`sass style.scss:style.css`でいけると思う
 
-### 余談
+### グローバルなディレクトリのパス
 ```bash
 # globalでインストールしたパッケージはここに格納されるっぽい
 ls /Users/user_name/.config/yarn/global/
 node_modules/ package.json  yarn.lock
 ```
+- グローバルなディレクトリの場所を確認する
+  ```shell
+  # yarn
+  yarn global dir
+  
+  # npm
+  npm root -g
+  ```
 
 ## ローカルインストール
 ```shell
@@ -636,5 +644,17 @@ yarn build:css sample.scss sample.css
 npm run build:css sample.scss sample.css
 ```
 
+## npx (パッケージランナーツール)
+### 背景
+- `create-react-app`のような頻繁に使わない(セットアップ用等)のコマンドは、容量節約したいためローカルに落としたくない
 
+### 機能
+- パッケージをグローバルにもローカルにもインストールせずに一時的にダウンロードして実行できる
 
+### 補足
+- yarnでは`yarn dlx`という`npx`に相当するものがあるがあまり使われていないので、普段yarnを使っていても一度限りしか使わないコマンドはnpxで行うのがスタンダード
+- npxコマンドを使う際はタイポに注意(本家に寄せた名前でマルウェアの可能性あり)
+
+## serve
+- https://github.com/vercel/serve
+  - npxを利用することで`npx serve`でローカルサーバーを立ち上げられる
