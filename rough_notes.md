@@ -1,60 +1,54 @@
-## PORO (Plain Old Ruby Object)
-- ActiveRecord等を継承しない単なるRubyオブジェクトのこと
-- 特定のデザインパターンを示すものではない
-- ビジネスロジック等を切り出してファットコントローラーやファットモデルを解消するために使われる
+## Monorepo / Polyrepo
+- リポジトリ構成のこと
+- Monorepo(モノレポ)
+  - 複数プロジェクトやコンポーネントを単一のリポジトリで管理する手法
+  - 同一リポジトリ内にBackendディレクトリとFrontendディレクトリがあるイメージ
+- Polyrepo
+  - プロジェクトやコンポーネント毎にリポジトリを分割して管理する手法
+  - Pinapはこっち
 
 ---
 
-## PostgreSQLのバージョン確認
-### rails console
-```ruby
-# 確認コマンド
-ActiveRecord::Base.connection.select_value('SELECT version()')
-  TRANSACTION (0.2ms)  BEGIN
-   (2.3ms)  SELECT version()
+## コンストラクターとは
+- インスタンスを生成するタイミングで実行されるメソッドのこと
+- オブジェクト指向言語の文脈
+- Rubyでいうところの`Object#initialize`
 
-# 結果
-=> "PostgreSQL 12.14 (Debian 12.14-1.pgdg110+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 10.2.1-6) 10.2.1 20210110, 64-bit"
+---
+
+## スプシで1行ごとに行の背景色を変える (テスト仕様書書くときに使った)
+1. 範囲選択
+2. 表示形式→条件付き書式
+3. カスタム数式の「値または数式」に`=MOD(ROW(),2)=0`を入力→色を選択して完了
+
+---
+
+## ステージング状態のrubyファイルのみrubocopをかけたい
+```shell
+git diff --name-only --cached | grep '\.rb$' | pbcopy && bundle exec rubocop -A $(pbpaste | tr '\n' ' ')
 ```
-**`select_value`メソッド**
+- xargsを使うやり方だとうまくいかなかったため無理やりコピペしてる
+- コマンド解説
+  - `--name-only`オプションでファイル名のみ表示。デフォルトだとワークツリーの差分ファイルのみ絞り込まれるので、`--cached`オプションでステージングの差分ファイルのみ絞り込む
+  - 末尾が`.rb`のファイルをgrep
+  - したものをクリップボードにコピー
+  - `tr '\n' ' '` で複数行の文字列を1行のスペース区切りに置換
+
+---
+
+## メソッド名について: `verify_**`
+- 配列を渡して何かしらの検証を行って配列で返すメソッドに`verify_**_uuids`という命名をしたが結局`filter_**_uuids`にした
 ```ruby
-# Returns a single value from a record
-def select_value(arel, name = nil, binds = [], async: false)
-  select_rows(arel, name, binds, async: async).then { |rows| single_value_from_rows(rows) }
+def filter_any_uuids(hoge_uuids, foo_uuids)
+  return [] if hoge_uuids.empty?
+
+  hoge_uuids.select { |uuid| some_kind_of_verify }
 end
 ```
-- ActiveRecordを介してSQLを直接実行するためのメソッド
-- 最初の行の最初のカラムのみ返すため、単一の値を高速に取得したいときのみ使う(DBのメタデータが知りたいときや集約関数を使用する場合など)
-- varidationやcallbackは適用されない
+- `verify_**`だと検証結果がbooleanで返ることを先見させてしまうため適してなさそうとの指摘をいただいた
+- 「何かしらの検証をして絞り込んだものを返す」というニュアンスを持たせて`filter_**`を採用した
 
-
-### システムのコマンドライン
-```shell
-docker-compose run --rm rails psql --version
-Creating rails_run ... done
-
-psql (PostgreSQL) 11.20 (Debian 11.20-0+deb10u1)
-```
-
-### SQL
-```
-docker compose run --rm rails bundle exec rails dbconsole
-
-db=# SELECT version();
-
-=> PostgreSQL 12.14 (Debian 12.14-1.pgdg110+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 10.2.1-6) 10.2.1 20210110, 64-bit
-```
-
-
-## `ActiveRecord::Base.connection.select_value('SELECT version()')`
-- このコマンドでやっていることは、ActiveRecordを通して、PostgreSQLデータベースに対して`SELECT version()`というSQLを実行し、その結果を取得している
-```ruby
-# Railsアプリケーションとデータベースの接続管理情報にアクセス
-ActiveRecord::Base.connection
-
-# SQLクエリを実行してPostgreSQLのバージョンを取得
-select_value('SELECT version()')
-```
+---
 
 ## `PostgreSQL 12.14 (Debian 12.14-1.pgdg110+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 10.2.1-6) 10.2.1 20210110, 64-bit`
 - 上記コマンドの返り値
@@ -103,44 +97,61 @@ PostgreSQL 12.14 (Debian 12.14-1.pgdg110+1) on x86_64-pc-linux-gnu, compiled by 
 
 ---
 
-## メソッド名について: `verify_**`
-- 配列を渡して何かしらの検証を行って配列で返すメソッドに`verify_**_uuids`という命名をしたが結局`filter_**_uuids`にした
+## `ActiveRecord::Base.connection.select_value('SELECT version()')`
+- このコマンドでやっていることは、ActiveRecordを通して、PostgreSQLデータベースに対して`SELECT version()`というSQLを実行し、その結果を取得している
 ```ruby
-def filter_any_uuids(hoge_uuids, foo_uuids)
-  return [] if hoge_uuids.empty?
+# Railsアプリケーションとデータベースの接続管理情報にアクセス
+ActiveRecord::Base.connection
 
-  hoge_uuids.select { |uuid| some_kind_of_verify }
+# SQLクエリを実行してPostgreSQLのバージョンを取得
+select_value('SELECT version()')
+```
+
+---
+
+## PostgreSQLのバージョン確認
+### rails console
+```ruby
+# 確認コマンド
+ActiveRecord::Base.connection.select_value('SELECT version()')
+  TRANSACTION (0.2ms)  BEGIN
+   (2.3ms)  SELECT version()
+
+# 結果
+=> "PostgreSQL 12.14 (Debian 12.14-1.pgdg110+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 10.2.1-6) 10.2.1 20210110, 64-bit"
+```
+**`select_value`メソッド**
+```ruby
+# Returns a single value from a record
+def select_value(arel, name = nil, binds = [], async: false)
+  select_rows(arel, name, binds, async: async).then { |rows| single_value_from_rows(rows) }
 end
 ```
-- `verify_**`だと検証結果がbooleanで返ることを先見させてしまうため適してなさそうとの指摘をいただいた
-- 「何かしらの検証をして絞り込んだものを返す」というニュアンスを持たせて`filter_**`を採用した
+- ActiveRecordを介してSQLを直接実行するためのメソッド
+- 最初の行の最初のカラムのみ返すため、単一の値を高速に取得したいときのみ使う(DBのメタデータが知りたいときや集約関数を使用する場合など)
+- varidationやcallbackは適用されない
 
----
 
-## ステージング状態のrubyファイルのみrubocopをかけたい
+### システムのコマンドライン
 ```shell
-git diff --name-only --cached | grep '\.rb$' | pbcopy && bundle exec rubocop -A $(pbpaste | tr '\n' ' ')
+docker-compose run --rm rails psql --version
+Creating rails_run ... done
+
+psql (PostgreSQL) 11.20 (Debian 11.20-0+deb10u1)
 ```
-- xargsを使うやり方だとうまくいかなかったため無理やりコピペしてる
-- コマンド解説
-  - `--name-only`オプションでファイル名のみ表示。デフォルトだとワークツリーの差分ファイルのみ絞り込まれるので、`--cached`オプションでステージングの差分ファイルのみ絞り込む
-  - 末尾が`.rb`のファイルをgrep
-  - したものをクリップボードにコピー
-  - `tr '\n' ' '` で複数行の文字列を1行のスペース区切りに置換
+
+### SQL
+```
+docker compose run --rm rails bundle exec rails dbconsole
+
+db=# SELECT version();
+
+=> PostgreSQL 12.14 (Debian 12.14-1.pgdg110+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 10.2.1-6) 10.2.1 20210110, 64-bit
+```
 
 ---
 
-## スプシで1行ごとに行の背景色を変える (テスト仕様書書くときに使った)
-1. 範囲選択
-2. 表示形式→条件付き書式
-3. カスタム数式の「値または数式」に`=MOD(ROW(),2)=0`を入力→色を選択して完了
-
----
-
-## コンストラクターとは
-- インスタンスを生成するタイミングで実行されるメソッドのこと
-- オブジェクト指向言語の文脈
-- Rubyでいうところの`Object#initialize`
-
----
-
+## PORO (Plain Old Ruby Object)
+- ActiveRecord等を継承しない単なるRubyオブジェクトのこと
+- 特定のデザインパターンを示すものではない
+- ビジネスロジック等を切り出してファットコントローラーやファットモデルを解消するために使われる
