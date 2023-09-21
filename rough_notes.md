@@ -1,3 +1,26 @@
+## 日本標準時(JST)の`+0900`表記
+- UTCとの差分を表し、９時間進んでいるという意味
+- `2023-01-01 12:00:00 +0900`の場合、UTCは`2023-01-01 03:00:00`
+
+---
+
+## 【Rails】`add_column`メソッドのafterオプション
+```ruby
+add_column :users, :middle_name, :string, after: :first_name
+
+#############################################
+ id | first_name | last_name
+ ↓
+ id | first_name | middle_name | last_name
+#############################################
+```
+- 指定したカラムの直後に配置される
+- MySQLでサポートされている(他はわからない)
+
+
+
+---
+
 ## Monorepo / Polyrepo
 - リポジトリ構成のこと
 - Monorepo(モノレポ)
