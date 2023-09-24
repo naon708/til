@@ -30,9 +30,9 @@ https://www.example.com/products?category=electronics&price_range=100-500&sort=p
 - アルファベット、数字、ハイフン、アンダースコアなどのURLで安全な文字のみ使える
 - 目的: 人間が読めるURLを提供することで、SEO（検索エンジン最適化）やUXの向上に役立つ
 ```plain
-Slugを使用しないURL: https://example.com/article/12345
+Slugを使用しないURL: https://example.com/articles/12345
 
-Slugを使用したURL: https://example.com/article/introduction-to-slug
+Slugを使用したURL: https://example.com/articles/introduction-to-slug
 ```
 
 ---
