@@ -1,3 +1,18 @@
+## 【Rails】`add_column`メソッドのafterオプション
+```ruby
+add_column :users, :middle_name, :string, after: :first_name
+
+#############################################
+ id | first_name | last_name
+ ↓
+ id | first_name | middle_name | last_name
+#############################################
+```
+- 指定したカラムの直後に配置される
+- MySQLでサポートされている(他はわからない)
+
+---
+
 ## 【Gem】discard
 - https://github.com/jhawthorn/discard
 - 論理削除
