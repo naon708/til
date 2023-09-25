@@ -1,3 +1,22 @@
+## 【GraphQL】Fragments
+```graphql
+query GetUser {
+  user(id: "7") {
+    ...userFields
+  }
+}
+
+fragment userFields on user {
+  name
+  age
+}
+```
+- フラグメント(fragments)という機能を使用して、QueryまたはMutationの一部を再利用可能な単位として切り出すことができる
+- 同じfieldのセットを1つのFragmentとして定義し、それを各Queryで使い回せる
+- https://graphql.org/learn/queries/#fragments
+
+---
+
 ## `git log -- [Filename]`
 - 削除されたファイルの履歴を追いたいときとか… 💭
 
