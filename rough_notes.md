@@ -7,7 +7,9 @@ const { result, loading, error } = useCurrentCustomerQuery()
   - `loading`: データの読み込み状態(boolean)
     - falseなら読み込み完了
   - `error`: エラーが発生した際のエラーオブジェクト(Object)
+
 https://v4.apollo.vuejs.org/guide-composable/query.html#query-status
+
 ---
 
 ## 【GraphQL】Fragments
