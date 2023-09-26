@@ -1,4 +1,4 @@
-## 【GraphQL】Query Status
+## 【GraphQL】Apollo Clientを介してQueryを叩く
 ```ts
 const { result, loading, error } = useCurrentCustomerQuery()
 ```
