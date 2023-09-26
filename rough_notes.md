@@ -1,3 +1,22 @@
+## JSDoc
+```js
+/**
+* How to use
+* @param {string} name - 挨拶したい相手の名前
+* @return {string} - 「Hello, [名前]」で返る
+* @example
+*/
+const greet = name => `Hello, ${name}!`
+```
+- JavaScriptのソースコードにアノテーションを追加するために使われるマークアップ言語
+- 変数や関数の使い方をドキュメントとして残したいときに使う
+- `/**  */`で囲う
+- `@param`とか`@return`は Block Tags と呼ばれるもので、JSDocで定義されているものを使うっぽい
+
+https://jsdoc.app/
+
+---
+
 ## 【GraphQL】Apollo Clientを介してQueryを叩く
 ```ts
 const { result, loading, error } = useCurrentCustomerQuery()
