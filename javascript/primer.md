@@ -716,3 +716,5 @@ webpack 5.88.2 compiled successfully in 77 ms
 (()=>{"use strict";console.log("bar")})();
 ```
 - 余計な記述を排除して完全に最適化されている状態
+
+## webpack-dev-server
