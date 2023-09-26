@@ -1,3 +1,15 @@
+## 【GraphQL】Query Status
+```ts
+const { result, loading, error } = useCurrentCustomerQuery()
+```
+- `use**Query`: Apollo Client を通じて GraphQL Queryを実行するための Composition API 用の関数
+  - `result`: Apollo ClientでFetchしたデータを含むオブジェクト(Object)
+  - `loading`: データの読み込み状態(boolean)
+    - falseなら読み込み完了
+  - `error`: エラーが発生した際のエラーオブジェクト(Object)
+https://v4.apollo.vuejs.org/guide-composable/query.html#query-status
+---
+
 ## 【GraphQL】Fragments
 ```graphql
 query GetUser {
