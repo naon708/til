@@ -848,6 +848,122 @@ root.render(<App tab="home" />);
 - React18系では`createRoot`を使う
   - https://react.dev/blog/2022/03/08/react-18-upgrade-guide#updates-to-client-rendering-apis
 
+## 最終的なディレクトリ構成
+```json
+"package.json": ""
+
+{
+  "license": "MIT",
+  "scripts": {
+    "build": "webpack",
+    "start": "webpack serve"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.23.0",
+    "@babel/preset-react": "^7.22.15",
+    "babel-loader": "^9.1.3",
+    "webpack": "^5.88.2",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^4.15.1"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}
+```
+
+```js
+// webpack.config.js
+
+const path = require('path');
+
+module.exports = {
+  mode: "development",
+  entry: './src/index.js',
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    filename: './bundle.js',
+  },
+  devServer: {
+    static: {
+      directory: path.resolve(__dirname, 'dist'),
+    }
+  },
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        use: [
+          {
+            loader: "babel-loader",
+            options: {
+              presets: ["@babel/react"],
+            }
+          }
+        ]
+      }
+    ]
+  }
+};
+```
+
+```html
+<!-- dist/index.html -->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+  </head>
+  <body>
+    <div id="app"></div>
+    <script src="bundle.js"></script>
+  </body>
+</html>
+```
+
+```js
+// src/index.js
+
+const foo = require("./foo.js")
+import bar from './bar.js';
+
+import React from "react";
+import { createRoot } from 'react-dom/client';
+
+const App = () => {  
+  return <h1>HELLO!!</h1>
+
+  foo();
+  bar();
+}
+
+const container = document.getElementById('app');
+const root = createRoot(container);
+root.render(<App tab="home" />);
+```
+
+```js
+// src/foo.js
+
+function foo() {
+  console.log("foo")
+}
+
+module.exports = foo;
+```
+
+```js
+// src/bar.js
+
+export default function bar() {
+  console.log("bar")
+}
+```
+
+`yarn install` と `yarn start` すれば動くと思う
+
 ---
 
 *Fin*
