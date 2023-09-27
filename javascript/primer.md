@@ -1,3 +1,9 @@
+教材
+- https://www.youtube.com/playlist?list=PLwM1-TnN_NN7-zdRV8YsGUB82VVhfYiWW
+- https://www.youtube.com/playlist?list=PLwM1-TnN_NN4SV6DEs4OtfA51Up6XzTfB
+
+---
+
 ## 関数の種類
 
 ```js
@@ -776,3 +782,72 @@ module.exports = {
 ```
 - v4で書き方が色々変わった様子
   - https://github.com/webpack/webpack-dev-server/blob/master/migration-v4.md
+
+
+## Reactの環境構築
+### JSファイルをコンパイルするためのBabelとReactをインストール
+```shell
+% yarn add -D @babel/core @babel/preset-react babel-loader
+% yarn add react react-dom
+```
+
+### 設定ファイル編集　(webpack.config.js)
+```js
+module.exports = {
+  // ....
+  module: {
+    // bundle時にどんなルールを設定したいか
+    rules: [
+      {
+        // .jsファイルを対象に
+        test: /\.js$/,
+        use: [
+          {
+            // babel-loaderを使ってください
+            loader: "babel-loader",
+            options: {
+              presets: ["@babel/react"],
+            }
+          }
+        ]
+      }
+    ]
+  }
+};
+```
+
+### JSファイルの書き方
+```js
+const foo = require("./foo.js")   // CommonJS形式
+import bar from './bar.js';   // ESModules形式
+
+import React from "react";
+import { createRoot } from 'react-dom/client';
+// import ReactDOM from "react-dom";
+
+const App = () => {
+  // Babelによってブラウザでも動くHTMLに変換される
+  return <h1>HELLO!!</h1>
+
+  foo();
+  bar();
+}
+
+// new
+const container = document.getElementById('app');
+const root = createRoot(container);
+root.render(<App tab="home" />);
+
+// old
+// ReactDOM.render(<App />, document.getElementById("app"))
+```
+
+`ReactDOM.render`の書き方だと下記エラーになる
+> ReactDOM.render is no longer supported in React 18. Use createRoot instead. Until you switch to the new API, your app will behave as if it’s running React 17. Learn more:
+
+- React18系では`createRoot`を使う
+  - https://react.dev/blog/2022/03/08/react-18-upgrade-guide#updates-to-client-rendering-apis
+
+---
+
+*Fin*
