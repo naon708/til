@@ -16,6 +16,8 @@ ActiveModel::Type::Boolean.new.cast(params[:for_print])
     => true
     ```
 
+https://api.rubyonrails.org/classes/ActiveModel/Type/Boolean.html
+
 ---
 
 ## 【Rails】`add_column`メソッドのafterオプション
