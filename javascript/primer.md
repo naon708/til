@@ -678,7 +678,7 @@ npm run build:css sample.scss sample.css
 
 <img src="https://github.com/naon708/til/assets/77439261/a06a47b5-0119-4c63-8fcc-cca0bc89e177" alt="webpack-image" width="80%" />
 
-## `yarn webpack`
+### `yarn webpack`
 - ビルドコマンド
 
 ```shell
@@ -693,7 +693,7 @@ webpack 5.88.2 compiled successfully in 77 ms
 ✨  Done in 3.03s.
 ```
 
-## 開発用と本番用のバンドルファイル(ビルド後のファイル)の違い
+### 開発用と本番用のバンドルファイル(ビルド後のファイル)の違い
 ```js
 // --mode=development
 
@@ -717,4 +717,62 @@ webpack 5.88.2 compiled successfully in 77 ms
 ```
 - 余計な記述を排除して完全に最適化されている状態
 
+### 設定ファイル編集　(webpack.config.js)
+```js
+const path = require('path');
+
+module.exports = {
+  // buildコマンドにオプションを付けない場合の環境指定
+  mode: "development",
+  // buid対象のJSファイル
+  entry: './src/index.js',
+  // build先のパスを指定
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    filename: './bundle.js',
+  },
+};
+```
+
 ## webpack-dev-server
+- 目的: ファイル修正の度にbuildし直すのは手間→ファイルの変更を検知して即座に反映させたい
+
+```shell
+% yarn start
+
+[webpack-dev-server] Loopback: http://localhost:8080/
+....
+
+# http://localhost:8080にアクセス
+```
+
+
+### npm script の設定
+```json
+{
+  "scripts": {
+    "build": "webpack",
+    "start": "webpack serve"
+  },
+}
+```
+
+### 設定ファイル編集　(webpack.config.js)
+```js
+const path = require('path');
+
+module.exports = {
+  // ....
+  devServer: {
+    // v3の書き方
+    // contentBase: path.resolve(__dirname, 'dist'),
+
+    // v4でこの書き方に変更された
+    static: {
+      directory: path.resolve(__dirname, 'dist'),
+    }
+  }
+};
+```
+- v4で書き方が色々変わった様子
+  - https://github.com/webpack/webpack-dev-server/blob/master/migration-v4.md
