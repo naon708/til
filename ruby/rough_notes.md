@@ -12,6 +12,9 @@ ActiveModel::Type::Boolean.new.cast(params[:for_print])
     ActiveModel::Type::Boolean.new.cast('')
     => nil
     
+    ActiveModel::Type::Boolean.new.cast(nil)
+    => nil
+
     ActiveModel::Type::Boolean.new.cast([])
     => true
     ```
