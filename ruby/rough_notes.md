@@ -1,4 +1,4 @@
-## ActiveModel::Type::Boolean.new.cast
+## 【Rails】`ActiveModel::Type::Boolean.new.cast`
 ```ruby
 # e.g. 印刷用かどうか
 ActiveModel::Type::Boolean.new.cast(params[:for_print])
