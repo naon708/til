@@ -1,3 +1,18 @@
+## Docker環境でRailsのデバッグをしたい
+```bash
+# バックグラウンドで起動
+% docker-compose up -d
+
+# Railsが動いているコンテナのコンテナID or コンテナ名を調べる
+% docker ps
+
+# Attachする
+% docker attach [コンテナのID or コンテナ名]
+
+# これでOK
+docker compose up -d && docker attach [Container Name]
+```
+
 ## JSDoc
 ```js
 /**
