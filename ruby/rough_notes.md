@@ -1,3 +1,21 @@
+## 【Rails】`reset_column_information`
+- テーブルを変更した後にモデルを使うときに付けたほうが良い記述
+```ruby
+class AddSalaryToPeople < ActiveRecord::Migration[7.2]
+  def up
+    add_column :people, :salary, :integer
+    Person.reset_column_information
+    Person.all.find_each do |person|
+      person.update_attribute :salary, SalaryCalculator.compute(person)
+    end
+  end
+end
+```
+> マイグレーションでカラムを追加し、その直後にカラムにデータを投入したいことがあります。
+> 
+> その場合、モデルに新しいカラムが追加された後の最新のカラムデータがあることを確認するために、`Base#reset_column_information`を呼び出す必要があります。
+
+https://github.com/rails/rails/blob/main/activerecord/lib/active_record/migration.rb#L448-L463
 ## 【Rails】`ActiveModel::Type::Boolean.new.cast`
 ```ruby
 # e.g. 印刷用かどうか
