@@ -16,6 +16,12 @@ end
 > その場合、モデルに新しいカラムが追加された後の最新のカラムデータがあることを確認するために、`Base#reset_column_information`を呼び出す必要があります。
 
 https://github.com/rails/rails/blob/main/activerecord/lib/active_record/migration.rb#L448-L463
+
+- 上記コードで、Personモデルを触るとDBの状態がキャッシュされる(ようにRailsができてる)
+- 後続のマイグレーションファイルでキャッシュをリセットしないままPersonモデルを触るとエラーになる
+- なので、`reset_column_information` でキャッシュをリセットして、 次に使うときにもう一度DBからcolumn情報を取得するようにする
+
+https://blog.onk.ninja/2017/10/18/use_reset_column_information
 ## 【Rails】`ActiveModel::Type::Boolean.new.cast`
 ```ruby
 # e.g. 印刷用かどうか
