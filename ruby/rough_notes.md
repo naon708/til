@@ -1,4 +1,4 @@
-## 【Rails】`reset_column_information`
+## 【Rails】`Model#reset_column_information`
 - マイグレーションファイルの中でモデルを触るときに付けるべき記述
 ```ruby
 class AddSalaryToPeople < ActiveRecord::Migration[7.2]
