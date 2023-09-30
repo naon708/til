@@ -1,5 +1,5 @@
 ## 【Rails】`reset_column_information`
-- テーブルを変更した後にモデルを使うときに付けたほうが良い記述
+- マイグレーションファイルの中でモデルを触るときに付けるべき記述
 ```ruby
 class AddSalaryToPeople < ActiveRecord::Migration[7.2]
   def up
