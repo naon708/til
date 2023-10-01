@@ -1,26 +1,38 @@
 ## 【Rails】日付操作
 ```ruby
 # 日
-Time.current.yesterday => 昨日の同時刻
-Time.current.tomorrow => 明日の同時刻
-Time.current.ago(1.day) => 1日前の同時刻
-Time.current.since(1.day) => 1日後の同時刻
+Time.current.yesterday   # => 昨日の同時刻
+Time.current.tomorrow   # => 明日の同時刻
+Time.current.ago(1.day)   # => 1日前の同時刻
+Time.current.since(1.day)   # => 1日後の同時刻
 
 # 週
-Time.current.prev_week => 前週の週初め(月曜)の00:00:00
-Time.current.next_week => 翌週の週初め(月曜)の00:00:00
-Time.current.ago(1.week) => 1週間前の同時刻
-Time.current.since(1.week) => 1週間後の同時刻
+Time.current.prev_week   # => 前週の週初め(月曜)の00:00:00
+Time.current.next_week   # => 翌週の週初め(月曜)の00:00:00
+Time.current.ago(1.week)   # => 1週間前の同時刻
+Time.current.since(1.week)   # => 1週間後の同時刻
 
 # 月
-Time.current.prev_month => 1ヶ月前の同時刻
-Time.current.next_month => 1ヶ月後の同時刻
+Time.current.prev_month   # => 1ヶ月前の同時刻
+Time.current.next_month   # => 1ヶ月後の同時刻
 
 # 年
-Time.current.prev_year => 1年前の同時刻
-Time.current.next_year => 1年後の同時刻
+Time.current.prev_year   # => 1年前の同時刻
+Time.current.next_year   # => 1年後の同時刻
+```
+```ruby
+# その他
+Time.current.beginning_of_day
+Time.current.end_of_day
 
+Time.current.beginning_of_week   # => 今週頭(月曜)の00:00:00
+Time.current.end_of_week   # => 今週末(日曜)の23:59:59
 
+Time.current.beginning_of_month   # => 月初の00:00:00
+Time.current.end_of_month   # => 月末の23:59:59
+
+Time.current.prev_week(:thursday)   # => 前週の木曜日の00:00:00
+Time.current.next_week(:thursday)   # => 翌週の木曜日の00:00:00
 ```
 
 ---
