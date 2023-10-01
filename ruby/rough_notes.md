@@ -1,3 +1,30 @@
+## 【Rails】日付操作
+```ruby
+# 日
+Time.current.yesterday => 昨日の同時刻
+Time.current.tomorrow => 明日の同時刻
+Time.current.ago(1.day) => 1日前の同時刻
+Time.current.since(1.day) => 1日後の同時刻
+
+# 週
+Time.current.prev_week => 前週の週初め(月曜)の00:00:00
+Time.current.next_week => 翌週の週初め(月曜)の00:00:00
+Time.current.ago(1.week) => 1週間前の同時刻
+Time.current.since(1.week) => 1週間後の同時刻
+
+# 月
+Time.current.prev_month => 1ヶ月前の同時刻
+Time.current.next_month => 1ヶ月後の同時刻
+
+# 年
+Time.current.prev_year => 1年前の同時刻
+Time.current.next_year => 1年後の同時刻
+
+
+```
+
+---
+
 ## 【Rails】`Model#reset_column_information`
 - マイグレーションファイルの中でモデルを触るときに付けるべき記述
 ```ruby
@@ -22,6 +49,9 @@ https://github.com/rails/rails/blob/main/activerecord/lib/active_record/migratio
 - なので、`reset_column_information` でキャッシュをリセットして、 次に使うときにもう一度DBからcolumn情報を取得するようにする
 
 https://blog.onk.ninja/2017/10/18/use_reset_column_information
+
+---
+
 ## 【Rails】`ActiveModel::Type::Boolean.new.cast`
 ```ruby
 # e.g. 印刷用かどうか
