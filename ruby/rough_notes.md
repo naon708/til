@@ -1,3 +1,33 @@
+## 【Rails】`rails stats`
+- アプリケーションのコードベースの統計情報を表示するコマンド
+
+- Name: セクション(Controllers, Models, Helpers, Mailersなど)
+
+```
+Lines: コメントや空行を含むコードの合計行数
+LOC (Lines of Code): コメントや空行を除くコードの行数
+Classes: クラスの数
+Methods: メソッドの数
+M/C (Methods per Class): クラスごとの平均メソッド数(オブジェクトの責任や役割が大きくなりすぎていないかの指標)
+LOC/M (Lines of Code per Method): メソッドごとの平均行数(メソッドが長くなりすぎていないかの指標)
+```
+---
+
+## 【Ruby】のfindメソッド
+```ruby
+# find(ifnone = nil) -> Enumerator
+[1, 2, 3, 4].find { |x| x.even? } # => 2
+```
+- ActiveRecordの`find`とややこしいが、モデルに対して実行していなかったり`find`にブロック渡してたらRubyのメソッドと思ってよさそう
+- `Enumerable#find` / `Enumerable#detect` (エイリアス)
+- 要素を評価してtrueになった最初の値を返す
+- trueになる値が無い場合
+  - ifnoneが指定されていない場合: `nil`を返す
+  - ifnoneが指定されている場合: ifnoneをcallした結果を返す
+ 
+    > ifnone には、call メソッドを持つ任意のオブジェクトを指定することができます。一般的に使われるのは Procオブジェクトやラムダ。
+---
+
 ## 【Rails】日付操作
 ```ruby
 # 日
