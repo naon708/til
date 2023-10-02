@@ -1,3 +1,11 @@
+## Deadlock
+wip
+---
+
+## CQRS
+wip
+---
+
 ## Docker環境でRailsのデバッグをしたい
 ```bash
 # バックグラウンドで起動
@@ -14,6 +22,8 @@ docker compose up -d && docker attach [Container Name]
 ```
 
 `Ctr+C`で抜けるとコンテナが終了してしまうので`Ctrl+P` or `Ctrl+Q`でDetach
+
+---
 
 ## JSDoc
 ```js
