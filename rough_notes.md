@@ -1,3 +1,10 @@
+## 自分が担当したPRで、マージされたものがどれくらいあるか確認
+```
+is:pr is:merged assignee:@me
+```
+
+---
+
 ## Deadlock
 wip
 ---
