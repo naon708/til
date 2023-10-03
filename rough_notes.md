@@ -13,6 +13,26 @@ wip
 wip
 ---
 
+## Zod (※上辺だけで全然理解してない)
+- TypeScriptの検証ライブラリ
+- TSは開発時の型安全性は担保されるけど、JSにコンパイルされてプラウザで動く時にTSの型情報は存在しないため、外部入力やAPIレスポンスなどの型安全は担保されていない
+- 背景: GraphQLの型システムとTypeScriptの型システムは異なるため型情報と実態の不整合が起きていた
+
+```ts
+// 雰囲気だけのコード
+import { z } from 'zod'
+
+export const DateScalarSchema = z.string().brand<'DateScalar'>()
+export type DateScalar = z.infer<typeof DateScalarSchema>
+```
+### 導入後
+- asによる型キャストの頻度が減少
+- 開発時にデータのスキーマ違反を検知できるようになった
+- バリデーションによって詳細な型を利用できるようになった
+- らしい
+
+---
+
 ## Docker環境でRailsのデバッグをしたい
 ```bash
 # バックグラウンドで起動
