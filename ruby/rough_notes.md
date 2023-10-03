@@ -1,3 +1,12 @@
+### 【Rails】ActiveRecordのmergeメソッドはARレコードを返すメソッドを指定すること
+```ruby
+company_ids = Company.joins(import_csv_setting: :import_csv_schedule).merge(ImportCsvSchedule.targets_at_the_time(Time.zone.now)).ids
+```
+- この場合、`ImportCsvSchedule.targets_at_the_time(Time.zone.now)`は`ActiveRecord::Relation`オブジェクトを返す必要がある
+- 返り値が`ActiveRecord::Relation`オブジェクトであれば、scopeでもクエリメソッドでもクラスメソッドでも構わない
+
+---
+
 ## 【Rails】`rails stats`
 - アプリケーションのコードベースの統計情報を表示するコマンド
 
