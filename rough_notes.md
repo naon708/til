@@ -1,4 +1,16 @@
-## 自分が担当したPRで、マージされたものがどれくらいあるか確認
+## 【Docker】コンテナ作成時の`gpus`オプション
+```bash
+docker container create --gpus=all --name use_gpu_project [Image]
+```
+- NVIDIAのGPUを搭載したマシン上にDockerコンテナを作成する際、`gpus`オプションを指定しないとホストマシンのGPUにアクセスできない
+- GPUにアクセスしたい場合は指定が必要
+- どのGPUを使うか指定する。値の指定がなければ、利用可能なGPU全てを使う
+- `all`は利用可能なすべてのGPUを使う
+https://docs.docker.jp/engine/reference/commandline/run.html?highlight=it#nvidia-gpu
+
+---
+
+## 【GitHub】自分が担当したPRで、マージされたものがどれくらいあるか確認
 ```
 is:pr is:merged assignee:@me
 ```
