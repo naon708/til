@@ -1,3 +1,19 @@
+## GPU
+<img width="740" alt="スクリーンショット 2023-10-04 21 54 55" src="https://github.com/naon708/til/assets/77439261/325537cc-9078-4c62-ab68-d7afb410e7ab">
+
+https://www.d3.ntt-east.co.jp/00101/
+
+- もともとは画像や動画、そしてゲームや3Dグラフィックスのレンダリングを高速に行うためのハードウェア
+- 並列処理能力が高いため、機械学習の計算処理、特に大量のデータやパラメータを扱うディープラーニングのモデル学習においても使われるようになった
+
+
+## Nvidia
+- GPUを中心とした製品を開発・販売している企業
+- 一般消費者向けGPU、データセンター向けGPU、機械学習用の高性能GPUを提供
+- ハードウェアだけでなく、CUDAというGPU上での並列処理を容易にするプログラミングプラットフォームやDeepLearningのライブラリなどのソフトウェアも提供している
+
+---
+
 ## 【Docker】コンテナ作成時の`gpus`オプション
 ```bash
 docker container create --gpus=all --name use_gpu_project [Image]
