@@ -1,3 +1,15 @@
+## `nvidia-smi`コマンド
+```bash
+$ nvidia-smi
+
+# smi -> System Management Interface
+```
+- NvidiaのGPUの使用率、温度、メモリ使用量など、GPUの詳細情報を取得するコマンド
+- コマンド実行して情報が返ってくれば、GPUにアクセスできているということ
+- GPUマシン上に構築したコンテナ内で実行すれば、コンテナがホストのGPUに正しくアクセスできているか確認できる
+
+---
+
 ## GPU
 <img width="740" alt="スクリーンショット 2023-10-04 21 54 55" src="https://github.com/naon708/til/assets/77439261/325537cc-9078-4c62-ab68-d7afb410e7ab">
 
