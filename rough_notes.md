@@ -1,3 +1,12 @@
+## Deadlock
+wip
+---
+
+## CQRS
+wip
+
+---
+
 ## `nvidia-smi`コマンド
 ```bash
 $ nvidia-smi
@@ -18,6 +27,7 @@ https://www.d3.ntt-east.co.jp/00101/
 - もともとは画像や動画、そしてゲームや3Dグラフィックスのレンダリングを高速に行うためのハードウェア
 - 並列処理能力が高いため、機械学習の計算処理、特に大量のデータやパラメータを扱うディープラーニングのモデル学習においても使われるようになった
 
+---
 
 ## Nvidia
 - GPUを中心とした製品を開発・販売している企業
@@ -45,12 +55,18 @@ is:pr is:merged assignee:@me
 
 ---
 
-## Deadlock
-wip
+## LinuxでOSのバージョン確認
+```bash
+lsb_release -a
+```
+
 ---
 
-## CQRS
-wip
+## LinuxでCPUアーキテクチャ確認
+```bash
+lscpu
+```
+
 ---
 
 ## Zod (※上辺だけで全然理解してない)
