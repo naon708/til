@@ -1,4 +1,4 @@
-## Google Workspaceの公開範囲に注意
+## GASデプロイ時のアクセス権限設定に注意
 - SlackのEvent Subscriptionsを有効にするためにエンドポイントの検証が必要だった
 - Slack側から検証のためGASのエンドポイントにアクセスを試みるが、GASデプロイ時のアクセス権限を「自分のみ」に設定していたためVerifiedできず詰まった
 
