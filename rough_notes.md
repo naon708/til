@@ -1,3 +1,20 @@
+## Dockerコンテナ内のvimでyankした際、クリップボードにコピーされなかった
+- Vimにも種類があって、クリップボードと連携できるものとできないものがある
+
+> - vim-tiny(デフォルトでインストールされている)
+> - vim
+> - vim-gtk ◎
+> - vim-athena ◎
+> - vim-gnome ◎
+> - vim-nox
+>
+> このうちクリップボードを利用できるものは◎の付いているvim-gtk、vim-athena、vim-gnomeになります。
+この中から好きなものをapt-getしましょう。
+
+https://sy-base.com/myrobotics/vim/vim_use_clipboard/
+
+---
+
 ## `.ttf`ファイル (TrueType Font)
 - フォントファイル
   - テキストの表示方法(= 各文字がどのように見えるか)を定義するグラフィック情報を持つ(各文字の形、大きさ、太さなど)
