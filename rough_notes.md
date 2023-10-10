@@ -69,6 +69,8 @@ $ nvidia-smi
 - コマンド実行して情報が返ってくれば、GPUにアクセスできているということ
 - GPUマシン上に構築したコンテナ内で実行すれば、コンテナがホストのGPUに正しくアクセスできているか確認できる
 
+learn more… https://qiita.com/miyamotok0105/items/1b34e548f96ef7d40370
+
 ---
 
 ## GPU
@@ -96,7 +98,10 @@ docker container create --gpus=all --name use_gpu_project [Image]
 - GPUにアクセスしたい場合は指定が必要
 - どのGPUを使うか指定する。値の指定がなければ、利用可能なGPU全てを使う
 - `all`は利用可能なすべてのGPUを使う
+
 https://docs.docker.jp/engine/reference/commandline/run.html?highlight=it#nvidia-gpu
+
+learn more… https://qiita.com/ttsubo/items/c97173e1f04db3cbaeda
 
 ---
 
