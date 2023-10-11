@@ -1,3 +1,17 @@
+python3 text_renderer_train_val_maker.py --help
+usage: text_renderer_train_val_maker.py [-h] -t_labels TMP_LABELS
+
+Run the TensorRT optimized object detecion model on an input video and save
+BBoxed overlaid output as another video.
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -t_labels TMP_LABELS, --tmp_labels TMP_LABELS
+                        image 一覧ファイル
+
+
+---
+
 ## Dockerコンテナ内のvimでyankした際、クリップボードにコピーされなかった
 - Vimにも種類があって、クリップボードと連携できるものとできないものがある
 
