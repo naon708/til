@@ -1,14 +1,32 @@
-python3 text_renderer_train_val_maker.py --help
-usage: text_renderer_train_val_maker.py [-h] -t_labels TMP_LABELS
+## 【Python】コマンドライン引数を解析する関数
+```py
+# 慣例的にparse_argsとすることが多い
+def parse_args():
+    # docstring: 関数やクラス、モジュールなどのドキュメンテーション
+    """Parse input arguments."""
+    desc = ('説明文...')
+    # argparse: コマンドライン引数の解析をサポートするモジュール
+    parser = argparse.ArgumentParser(description=desc)
 
-Run the TensorRT optimized object detecion model on an input video and save
-BBoxed overlaid output as another video.
+    # コマンドライン引数の定義
+    parser.add_argument('-s_arg', '--some_argument', type=str, required=True, default=None, help='引数の説明')
+    
+    args = parser.parse_args()
+    return args
+```
+```bash
+$ python3 foo.py --tmp_labels bar.txt
+```
+### `--help`オプションで引数のdescriptionを確認できる
+```bash
+python3 <file name> --help
+usage: text_renderer_train_val_maker.py [-h] -t_labels TMP_LABELS
 
 optional arguments:
   -h, --help            show this help message and exit
-  -t_labels TMP_LABELS, --tmp_labels TMP_LABELS
-                        image 一覧ファイル
-
+  -s_arg SOME_FILE, --some_argment SOME_FILE
+                        引数の説明
+```
 
 ---
 
