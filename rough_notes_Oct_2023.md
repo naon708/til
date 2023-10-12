@@ -1,3 +1,26 @@
+## canvasの座標は左上が原点
+<img width="363" alt="スクリーンショット 2023-10-12 21 44 13" src="https://github.com/naon708/til/assets/77439261/371d6293-1e8c-4f56-b332-4e7866819238"><br>
+https://www.yugien.xyz/web/api/canvas/coordinate_system.html
+
+```js
+function draw_triangle() {
+  var canvas = document.getElementById("canvas");
+  if (canvas.getContext) {
+    var ctx = canvas.getContext("2d");
+
+    ctx.beginPath();
+    ctx.moveTo(150, 0);
+    ctx.lineTo(0, 150);
+    ctx.lineTo(300, 150);
+    ctx.fill();
+  }
+}
+```
+
+
+
+---
+
 ## 【機械学習】Early Stoppingの考え方
 
 <img width="821" alt="スクリーンショット 2023-10-12 21 32 07" src="https://github.com/naon708/til/assets/77439261/2c6ae4b3-33be-480b-95b3-602bffe339f2"></br>
@@ -9,8 +32,6 @@ https://zero2one.jp/ai-word/early-stopping/
   - トレーニング時間やリソースの節約
 - 判断基準
   - トレーニングの途中で評価を行いながら、モデルの性能が一定のepoch数にわたって向上されない場合は止める
-
-
 
 ---
 
