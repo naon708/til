@@ -1,6 +1,7 @@
 ## 【機械学習】Early Stoppingの考え方
 
-<img width="821" alt="スクリーンショット 2023-10-12 21 32 07" src="https://github.com/naon708/til/assets/77439261/2c6ae4b3-33be-480b-95b3-602bffe339f2">
+<img width="821" alt="スクリーンショット 2023-10-12 21 32 07" src="https://github.com/naon708/til/assets/77439261/2c6ae4b3-33be-480b-95b3-602bffe339f2"></br>
+https://zero2one.jp/ai-word/early-stopping/
 
 - トレーニングの途中でも、モデルの性能が頭打ちになったり過学習となる場合は早期に終了することがある
   - 過学習の防止
