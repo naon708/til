@@ -27,6 +27,7 @@ https://xtech.nikkei.com/atcl/nxt/column/18/02574/090700009/?i_cid=nbpnxt_rankin
 - 顧客関係管理
 - 新規顧客の獲得が難しくなっている昨今、既存顧客との関係性向上(ナーチャリング)が重要で、それに必要な情報を管理すること
 
+---
 
 ## CAFIS (Credit And Finance Information System)
 - クレジットカード決済において、加盟店とカード発行会社（または金融機関）の間の通信を仲介する役割を持つシステム(1984年サービス開始)
