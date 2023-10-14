@@ -5,10 +5,10 @@
   - `基幹システム`：企業の経営上必要不可欠なシステム
   - `情報システム`：業務を円滑に遂行するためのシステム
 - クラウド化のトレンドにより、ERPをクラウド上に構築できるサービスが増加している
-  -  `CRM`: HubSpot, SalesForce
-  -  `会計`: freee, MoneyForword
-  -  `コミュニケーションツール`: Slack, Chatwork
-  -  `ナレッジベース`: Kibela, Notion
+  -  CRM: HubSpot, SalesForce
+  -  会計: freee, MoneyForword
+  -  コミュニケーションツール: Slack, Chatwork
+  -  ナレッジベース: Kibela, Notion
 
 <img width="540" alt="about_cafis" src="https://github.com/naon708/til/assets/77439261/ca320022-33c5-4421-8fd1-bc2226b44cf2">
 
