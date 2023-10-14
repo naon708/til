@@ -15,6 +15,8 @@ https://xtech.nikkei.com/atcl/nxt/news/18/16068/?i_cid=nbpnxt_sied_blogcard
 
 [次期全銀システムは富士通メインフレームとCOBOLから脱却へ、何が変わるのか](https://xtech.nikkei.com/atcl/nxt/column/18/00001/07669/)
 
+### まとめると
+COBOLとかメインフレームといった古い技術基盤を使い続けていることが原因で発生した。これらの技術を扱える技術者も減っていくし、システムに造詣のある人間が金融庁におらず「とにかく安全」に固執している金融機関の企業体質が問題の本質のよう。
 
 ### 一連のニュース
 [50年間で初めての大規模障害、全銀システムが分かる厳選記事](https://xtech.nikkei.com/atcl/nxt/info/18/00037/101100141/?i_cid=nbpnxt_sied_blogcard)
