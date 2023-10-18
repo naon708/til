@@ -1,4 +1,81 @@
-### 【Rails】ActiveRecordのmergeメソッドはARレコードを返すメソッドを指定すること
+## 【Rails】`gem 'ancestry'`
+- ActiveRecordモデルで階層構造を表現するGem
+
+### e.g. 部署レコード
+```ruby
+class Department < ApplicationRecord
+  has_ancestry cache_depth: true, orphan_strategy: :restrict
+end
+```
+```ruby
+#<Department:0x0000aaab01035ed8
+ id: 1,
+ name: "東京支社",
+ uuid: "3cf273e9-3b37-461f-9fb1-14b88dc7e259",
+ ancestry: nil,
+ ancestry_depth: 0>
+
+#<Department:0x0000aaab03998280
+ id: 7,
+ name: "購買部",
+ uuid: "44990366-ac5d-4b2d-843a-3c0b0c15cad1",
+ ancestry: "1",
+ ancestry_depth: 1>
+
+#<Department:0x0000aaab04413ca0
+ id: 27,
+ name: "(子)購買部",
+ uuid: "61ec4421-ff4b-4a1f-b2d7-1ca1b5308961",
+ ancestry: "1/7",
+ ancestry_depth: 2>
+
+#<Department:0x0000aaab01bd7188
+ id: 30,
+ name: "(孫)購買部",
+ uuid: "cab8f60e-adf0-4981-87c7-f723bac67082",
+ ancestry: "1/7/27",
+ ancestry_depth: 3>
+```
+
+### 提供されるメソッド群
+```ruby
+d = Department.find_by(display_name: '購買部')
+cd = Department.find_by(display_name: '(子)購買部')
+cd2 = Department.find_by(display_name: '(子2)購買部')
+gcd = Department.find_by(display_name: '(孫)購買部')
+
+# 親レコード
+gcd.parent
+=> Department Load (3.6ms)  SELECT "departments".* FROM "departments" WHERE "departments"."id" = $1 LIMIT $2  [["id", 27], ["LIMIT", 1]]
+
+# 子レコードすべて
+gcd.children
+=> Department Load (4.1ms)  SELECT "departments".* FROM "departments" WHERE "departments"."deleted_at" IS NULL AND "departments"."ancestry" = '1/7/27/30'
+
+# 最上位レコード
+gcd.root
+=> Department Load (3.2ms)  SELECT "departments".* FROM "departments" WHERE "departments"."id" = $1 LIMIT $2  [["id", 1], ["LIMIT", 1]]
+
+# 直系のレコードすべて
+gcd.path
+=> Department Load (9.8ms)  SELECT "departments".* FROM "departments" WHERE "departments"."deleted_at" IS NULL AND "departments"."id" IN (1, 7, 27, 30) ORDER BY "departments"."ancestry" ASC NULLS FIRST
+
+# レシーバー配下のレコードすべて(レシーバーも含む)
+d.subtree
+=> Department Load (23.0ms)  SELECT "departments".* FROM "departments" WHERE "departments"."deleted_at" IS NULL AND ("departments"."ancestry" LIKE '1/7/%' OR "departments"."ancestry" = '1/7' OR "departments"."id" = 7)
+
+# depthが2以降のレコードすべて
+d.subtree.from_depth(2)
+=> Department Load (12.4ms)  SELECT "departments".* FROM "departments" WHERE "departments"."deleted_at" IS NULL AND ("departments"."ancestry" LIKE '1/7/%' OR "departments"."ancestry" = '1/7' OR "departments"."id" = 7) AND (ancestry_depth >= 2)
+```
+
+### 参考
+- https://github.com/stefankroes/ancestry
+- https://zenn.dev/kou_row_line/articles/48e2262b7b2e70
+
+---
+
+## 【Rails】ActiveRecordのmergeメソッドはARレコードを返すメソッドを指定すること
 ```ruby
 company_ids = Company.joins(import_csv_setting: :import_csv_schedule).merge(ImportCsvSchedule.targets_at_the_time(Time.zone.now)).ids
 ```
