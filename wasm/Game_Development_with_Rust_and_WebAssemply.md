@@ -1,4 +1,9 @@
 ```bash
+node -v
+=> 16.13.0
+```
+### Setup
+```bash
 npm install
 ```
 ```bash
