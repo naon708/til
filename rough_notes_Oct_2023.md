@@ -1,3 +1,19 @@
+## 【DB】漢字で並べ替えたい
+- 漢字でもorderした状態で
+```ruby
+```
+
+```bash
+postgres=# SELECT * FROM pg_collation WHERE collname LIKE 'ja%';
+  oid  |  collname   | collnamespace | collowner | collprovider | collisdeterministic | collencoding | collcollate | collctype  | collversion
+-------+-------------+---------------+-----------+--------------+---------------------+--------------+-------------+------------+-------------
+ 12747 | ja-JP-x-icu |            11 |        10 | i            | t                   |           -1 | ja-JP       | ja-JP      | 153.14.37
+ 12746 | ja-x-icu    |            11 |        10 | i            | t                   |           -1 | ja          | ja         | 153.14.37
+ 12331 | ja_JP       |            11 |        10 | c            | t                   |            6 | ja_JP.utf8  | ja_JP.utf8 |
+ 12329 | ja_JP.utf8  |            11 |        10 | c            | t                   |            6 | ja_JP.utf8  | ja_JP.utf8 |
+```
+---
+
 ## `ps aux`の出力がウィンドウから途切れる時
 ```bash
 ps aux | less
