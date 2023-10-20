@@ -1,10 +1,35 @@
-## 【DB】漢字で並べ替えたい
-- 漢字でもorderした状態で
+## 【DB】コレクションを漢字でも並べ替えたい
+- `COLLATE`は、データベースでの文字列比較や並び替えの挙動を制御するための仕組み
+- あるカラムや文字列の比較・並び替えを特定の`照合順序(collation)`で行いたい場合に使用する
+
+> 通常、データベースのデフォルト照合順序で十分ですが、特定の言語や地域に特化した照合順序が必要な場合や、デフォルトと異なる照合順序を使用して文字列を比較・並び替えしたい場合に COLLATE を使います。
+
+### Railsでの使用例
 ```ruby
+records.order(Arel.sql('name collate "ja_JP.utf8" desc'))
+
+# アプリケーションにDBのデフォルトの照合順序が設定されていれば下記でもOK
+records.order(Arel.sql('name desc'))
+# これでいいか
+records.order(name: :desc)
+```
+### デフォルトの照合順序の設定
+```yaml
+# config/database.yml
+
+default: &default
+  adapter: postgresql
+  # 文字列のソート順や比較に関わる設定
+  collation: ja_JP.utf8
+  # 文字の分類や変換に関する設定
+  ctype: ja_JP.utf8
 ```
 
+### PostgreSQLサーバーに`ja_JP.utf8`がインストールされているか確認する
 ```bash
-postgres=# SELECT * FROM pg_collation WHERE collname LIKE 'ja%';
+postgres=#
+SELECT * FROM pg_collation WHERE collname LIKE 'ja%';
+
   oid  |  collname   | collnamespace | collowner | collprovider | collisdeterministic | collencoding | collcollate | collctype  | collversion
 -------+-------------+---------------+-----------+--------------+---------------------+--------------+-------------+------------+-------------
  12747 | ja-JP-x-icu |            11 |        10 | i            | t                   |           -1 | ja-JP       | ja-JP      | 153.14.37
@@ -12,6 +37,7 @@ postgres=# SELECT * FROM pg_collation WHERE collname LIKE 'ja%';
  12331 | ja_JP       |            11 |        10 | c            | t                   |            6 | ja_JP.utf8  | ja_JP.utf8 |
  12329 | ja_JP.utf8  |            11 |        10 | c            | t                   |            6 | ja_JP.utf8  | ja_JP.utf8 |
 ```
+
 ---
 
 ## `ps aux`の出力がウィンドウから途切れる時
