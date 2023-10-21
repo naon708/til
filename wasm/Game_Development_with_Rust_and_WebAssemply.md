@@ -10,6 +10,14 @@ npm install
 npm run start
 ```
 
+### Rustアプリケーションのパッケージマネージャー兼ビルドシステム → `Cargo`
+- `Cargo.toml`
+- `Cargo.lock`
+
+### mainとなるRustファイル
+- `src/lib.rs`
+
+
 ---
 
 - canvasの座標は左上が原点(0, 0)
