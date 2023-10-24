@@ -1,3 +1,18 @@
+## 【Rails】安全にマイグレーションする
+- gem `strong_migrations` を使う
+  - https://github.com/ankane/strong_migrations
+
+### カラム削除は5ステップ
+```
+1. キャッシュからカラムを無視するようにActive Recordに伝える (モデルにignored_columnsの記述を加える)
+2. コードをデプロイする
+3. カラムを削除するマイグレーションを書く（safety_assuredブロックでラップする）
+4. マイグレーションをデプロイして実行する
+5. ステップ1で追加した行(ignored_columnsの記述)を削除する
+```
+
+https://github.com/ankane/strong_migrations#removing-a-column
+
 ## 【DB】コレクションを漢字でも並べ替えたい
 - `COLLATE`は、データベースでの文字列比較や並び替えの挙動を制御するための仕組み
 - あるカラムや文字列の比較・並び替えを特定の`照合順序(collation)`で行いたい場合に使用する
