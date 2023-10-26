@@ -1,3 +1,29 @@
+## 【Docker】環境変数を設定したい
+
+### 結論
+- `.env`ファイルに書く
+
+  ```
+  SECRET_ID=12345678
+  SECRET_PASSWORD=password
+  ```
+  - docker-composeで立ち上がるコンテナ全てで共通して使える。
+- もしくは`docker-compose.yml`か`Dockerfile`に書く
+  - 他のコンテナからは参照できない
+ 
+https://qiita.com/hiro5963/items/5c8308c26f40a5df5055
+
+### 補足
+```bash
+# Dockerコンテナに入って直接環境変数を設定してみたところ、コンテナを抜けたり再起動すると設定は破棄されてしまった
+docker exec -it [container name] bash
+export SECRET_ID=12345678
+exit
+```
+- 永続化させるには上述の設定ファイルに記述する
+
+---
+
 ## 【Rails】安全にマイグレーションする
 - gem `strong_migrations` を使う
   - https://github.com/ankane/strong_migrations
@@ -12,6 +38,8 @@
 ```
 
 https://github.com/ankane/strong_migrations#removing-a-column
+
+---
 
 ## 【DB】コレクションを漢字でも並べ替えたい
 - `COLLATE`は、データベースでの文字列比較や並び替えの挙動を制御するための仕組み
