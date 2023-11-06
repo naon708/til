@@ -1,3 +1,14 @@
+## ChatGPTの回答を図解で理解する
+```
+1. ◯◯の処理フローを解説してください。また、PlantUMLで表してください
+2. http://www.plantuml.com/plantuml にアクセスし、提示されたPlantUMLコードを図で確認する
+3. 必要に応じてPNGやSVGでダウンロードする
+```
+http://www.plantuml.com/plantuml
+
+
+---
+
 ## 【機械学習】モデルトレーニングの処理フロー
 
 ![機械学習_処理フロー_toy](https://github.com/naon708/til/assets/77439261/a10a6703-8124-4119-872c-b21720046548)
