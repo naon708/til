@@ -1,4 +1,4 @@
-## 改行コードの種類(LF, CRLF, CR)
+## 改行コードの種類(`LF`, `CRLF`, `CR`)
 - macOS　→　`LF`
 - Windows　→　`CRLF`
 
@@ -56,8 +56,36 @@ docker container create --gpus=all -it --mount type=bind,src="/hoge",dst="/hoge"
 
 ---
 
-## 【Rails】TimeWithZoneを使おう
-wip
+## 【Rails】`TimeWithZone`を使おう
+- datetimeだとActiveRecordで投げたときに値が変わってしまう
+
+```ruby
+Customer.where(created_at: time).to_sql
+=> "SELECT \"customers\".* FROM \"customers\" WHERE \"customers\".\"deleted_at\" IS NULL AND \"customers\".\"created_at\" = '2024-01-23 10:00:00'"
+
+Customer.where(created_at: datetime).to_sql
+=> "SELECT \"customers\".* FROM \"customers\" WHERE \"customers\".\"deleted_at\" IS NULL AND \"customers\".\"created_at\" = '2024-01-23 19:00:00'"
+
+Customer.where(created_at: timewithzone).to_sql
+=> "SELECT \"customers\".* FROM \"customers\" WHERE \"customers\".\"deleted_at\" IS NULL AND \"customers\".\"created_at\" = '2024-01-23 10:00:00'"
+```
+
+```ruby
+DateTime.new(2024, 1, 23, 10, 0)
+=> Tue, 23 Jan 2024 10:00:00 +0000
+# => DateTime class
+
+Time.new(2024, 1, 23, 10, 0)
+=> "2024-01-23T10:00:00.000+09:00"
+# => Time class
+
+Time.zone.local(2024, 1, 23, 10, 0)
+=> Tue, 23 Jan 2024 10:00:00.000000000 JST +09:00
+# => ActiveSupport::TimeWithZone class
+```
+
+
+ref. https://qiita.com/jnchito/items/cae89ee43c30f5d6fa2c#activesupporttimewithzone%E3%82%AF%E3%83%A9%E3%82%B9
 
 ---
 
