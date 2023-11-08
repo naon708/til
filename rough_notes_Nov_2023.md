@@ -41,6 +41,12 @@ docker container create --gpus=all -it --mount type=bind,src="/hoge",dst="/hoge"
 - NVIDIAのCUDAやcuDNN、TensorRTなどのGPU関連のライブラリがプリインストールされている
 - ホストとコンテナでファイルを共有している(マウント)
 
+![docker_mount_arch](https://github.com/naon708/til/assets/77439261/0a443fcc-6be3-46dd-871b-023a1387152b)
+
+
+![cellrean](https://github.com/naon708/til/assets/77439261/f8a3db45-a322-403e-a755-2704634bdbc0)
+
+
 ### なぜイメージ内のライブラリがホストマシン上に存在しないか
 - CUDAやcuDNNなどのライブラリはホストマシンに存在しない
 - なぜなら、これらのライブラリはDockerのイメージに組み込まれているもので、コンテナ起動時にコンテナ内にロードされる
