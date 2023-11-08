@@ -1,3 +1,43 @@
+## 改行コードの種類(LF, CRLF, CR)
+- macOS　→　`LF`
+- Windows　→　`CRLF`
+
+| 名称 | 意味 | コード | 向き | OS |
+| --- | --- | --- | --- | --- |
+| CR（Carriage Return） | カーソルを左端の位置に移動する。復帰。 | \r | ← | MacOS 9以前 |
+| LF（Line Feed） | カーソルを次の行に移動する。改行。 | \n | ↓ | MacOS X以降 |
+| CR + LF（Carriage Return + Line Feed） | カーソルを左端に移動して、次の行に移動する。復帰+改行。 | \r\n | ← + ↓ | Windows |
+
+- Windowsで開発したコードを管理するGitリポジトリをmacOSで編集する際に、改行コード分の差分がでてしまう
+- また、コードに`CRLF`と`LF`が混在しているとプログラムの動作やビルドに影響する
+- なので、Pullしたコードを利用するだけなら問題ないが、編集するなら`LF`に置き換えたほうが良い
+
+### スクリプトで更新できる
+```bash
+# 一時的に autocrlf を false にする
+git config core.autocrlf false
+
+# ワークツリーを更新する(.gitディレクトリを除いて消去し、チェックアウトしなおす)
+ls -A --color=never -I .git | xargs -d '\n' rm -rf
+git checkout -- .
+
+# 改行コードを変換
+git grep -l -I $'\r$' | xargs -d '\n' nkf -Lu --overwrite
+```
+ref. https://kokufu.blogspot.com/2017/03/git-repository-crlf-lf.html
+
+---
+
+## 【Docker】イメージ内とマウントしてるディレクトリは関係ない
+wip
+
+---
+
+## 【Rails】TimeWithZoneを使おう
+wip
+
+---
+
 ## ChatGPTの回答を図解で理解する
 ```
 1. ◯◯の処理フローを解説してください。また、PlantUMLで表してください
