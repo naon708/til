@@ -1,3 +1,33 @@
+## 【Rails】`find_or_initialize_by`メソッド
+```ruby
+# activerecord/lib/active_record/relation.rb
+module ActiveRecord
+  class Relation
+    # 指定したレコードがあればそれを返し、なければインスタンス生成
+    def find_or_initialize_by(attributes, &block)
+      find_by(attributes) || new(attributes, &block)
+    end
+
+    # 指定したレコードがあればそれを返し、なければレコード作成
+    def find_or_create_by(attributes, &block)
+      find_by(attributes) || create_or_find_by(attributes, &block)
+    end
+  end
+end
+```
+
+---
+
+## 【Rails】Railsアプリケーションにおける`attr_accessor`
+```ruby
+# 一時的なデータ保持やDBに保存しない値を属性として定義したいときに使う
+attr_accessor :sync_result
+```
+- 今回だとrakeタスクのログ出力用の文章とかに使ってた
+  - rakeタスク内のserviceクラスで値を入れて、serviceクラス外で参照したり
+
+---
+
 ## 改行コードの種類(`LF`, `CRLF`, `CR`)
 - macOS　→　`LF`
 - Windows　→　`CRLF`
