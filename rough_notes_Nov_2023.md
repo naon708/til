@@ -1,3 +1,14 @@
+## 【機械学習】間違い検知(誤り検知)
+- 認識した文字を、事前に定義した辞書に含まれているものかどうかを検知する
+- その検知の精度を上げたい
+
+### OCR全体の処理フロー
+![白黒_間違い検知フロー図](https://github.com/naon708/til/assets/77439261/ea2b26c7-971f-4ece-b005-81a46624fd1e)
+
+wip
+
+---
+
 ## 【Rails】`find_or_initialize_by`メソッド
 ```ruby
 # activerecord/lib/active_record/relation.rb
