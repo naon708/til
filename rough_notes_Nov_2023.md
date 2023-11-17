@@ -1,3 +1,29 @@
+## 【Python】参照渡し
+```py
+# メイン関数内で定義した配列をサブ関数に渡す
+# サブ関数内で配列に要素を追加すると、元の配列も更新される(参照渡し)
+def main():
+    some_lists = []
+    print(some_lists)
+    
+    sub(100, some_lists)
+    print(some_lists)
+    
+def sub(a, some_lists):
+    some_lists.append({'center': a, 'coordinates': [a]})
+    print(some_lists)
+    
+main()
+```
+```sh
+[]
+[{'center': 100, 'coordinates': [100]}]
+[{'center': 100, 'coordinates': [100]}]
+```
+- Rubyも同様
+
+---
+
 ## `CPU`, `GPU`, `NPU` の違い
 
 ### `CPU(Central Processing Unit)`とは？
