@@ -1,3 +1,24 @@
+## 【SQL】DISTINCTが理屈で分かった振りをしていてイメージできていなかったので確認
+wip
+
+---
+
+## 【Ruby】`inject`メソッドの使い方
+
+---
+
+## 【Rails】`joins`と`eager_load`の併用
+```ruby
+# 従業員->検査->再検査->対象項目と辿っていって内部結合とプリロードをしている
+target_customers = customers.joins(inspection: { re_inspection: :required_categories})
+                            .eager_load(inspection: { re_inspection: :required_categories})
+                            .where(re_inspections: { status: :not_examined }) 
+```
+- 一見、同じリレーションで内部結合と外部結合を行っていて意味がないように見えるが、フィルタリングのために内部結合が必要でかつ関連データをプリロードしたい場合に有効
+  - 対象項目を持つ従業員のみ対象としたうえで、何かしらのループ処理を行いたいとき
+
+---
+
 ## 【Python】参照渡し
 ```py
 # メイン関数内で定義した配列をサブ関数に渡す
