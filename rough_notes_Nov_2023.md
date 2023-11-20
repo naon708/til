@@ -4,7 +4,37 @@ wip
 ---
 
 ## 【Ruby】`inject`メソッドの使い方
-wip
+- 配列等のコレクションの要素を順番に処理して1つの値にまとめる
+
+### 例1: 合計を計算する
+```ruby
+# 初期値を設定しない場合は最初の要素がresultに入り、2番目の要素がitemに入る
+p [1, 2, 3, 4].inject { |result, item| result + item }    # => 10
+
+# 引数に指定した初期値がresultに入る
+p [1, 2, 3, 4].inject(10) { |result, item| result + item }  # => 20
+```
+1. 配列の最初の要素(初期値が設定されている場合は初期値)から順番に要素を見ていき、ブロック内の計算を行う
+2. 前のステップの計算結果がresultに渡される
+3. 最後まで処理した結果がinjectメソッドの戻り値
+
+> injectメソッドは、一見すると少し複雑に見えますが、要するに「コレクションの各要素に対して一連の操作を行い、その結果を次々に積み上げていく」ということです。
+
+### 例2: 配列に追加していく
+```ruby
+name_keys.inject([]) do |result, key|
+  names << SomeModel.human_attribute_name(key)
+  names
+end
+```
+```ruby
+# 同じことをeachで行うとこんな感じ
+result = []　　　# 事前に空配列を定義
+name_keys.each do |key|
+  names << SomeModel.human_attribute_name(key)
+end
+```
+
 
 ---
 
