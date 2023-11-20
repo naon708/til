@@ -4,6 +4,7 @@ wip
 ---
 
 ## 【Ruby】`inject`メソッドの使い方
+wip
 
 ---
 
