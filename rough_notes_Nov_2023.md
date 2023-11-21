@@ -1,4 +1,12 @@
-## 【SQL】DISTINCTが理屈で分かった振りをしていてイメージできていなかったので確認
+## 【SQL】`DISTINCT`が理屈で分かった振りをしていてイメージできていなかったので確認
+内部結合の仕組み的に、has_many関連先のレコードが複数あると、その分関連元レコードも複数取れてしまう
+```ruby
+target_customers = customers.joins(inspection: { re_inspection: :required_categories}).distinct
+```
+- 従業員に紐づく再検査のカテゴリーが複数ある場合、従業員が重複してしまう
+- それがいやなときは`distinct`を使う
+
+テーブルを書く
 wip
 
 ---
