@@ -1,3 +1,14 @@
+## 【Git】stashを間違えてdropしたときの復元方法
+```bash
+git cherry-pick -n -m1 {stashのハッシュ値}
+
+# ハッシュ値は下記のような
+# Dropped stash@{0} (1fb0beeb3dc78cb9c9d3f299273339697b26ef5f)
+```
+神記事: https://blog.masuyoshi.com/git-stash-drop-reset/
+
+---
+
 ## 【SQL】`DISTINCT`が理屈で分かった振りをしていてイメージできていなかったので確認
 内部結合の仕組み的に、has_many関連先のレコードが複数あると、その分関連元レコードも複数取れてしまう
 ```ruby
