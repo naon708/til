@@ -1,3 +1,51 @@
+## 【Vue】毎回忘れる`v-slot`ディレクティブ
+```html
+<main-container>
+  <template #header>
+  <!-- v-slot:header の省略 -->
+    <breadcrumb />
+  </template>
+  <template #default>
+    <main-frame></main-frame>
+  </template>
+  <template #footer>
+    <button>Close</button>
+  </template>
+</main-container>
+```
+
+- templateタグの親要素が元となるコンポーネントで、そこでslotが定義されている(この場合、`<main-container>`)
+- 「このtemplateはどこに挿入されるんだ？」が気になったら親要素の定義ファイルを見に行く(この場合、`main-container.vue`みたいなファイル)
+
+```html
+<!-- main-container.vue -->
+
+<section>
+  <div>
+    <!-- @slot ヘッダー -->
+    <slot name="header" />
+  </div>
+</section>
+
+<section>
+  <!-- @slot メインコンテンツ -->
+  <slot />
+</section>
+
+<section>
+  <div>
+    <!-- @slot フッター -->
+    <slot name="footer" />
+  </div>
+</section>
+```
+
+> name を持たない <slot> アウトレットは、暗黙的に "default" という name を持つものとされます。
+
+https://ja.vuejs.org/guide/components/slots
+
+---
+
 ## 【Web】オフラインモードってどうなってるの？
 1. サーバーから取得したデータをブラウザのローカルストレージに保存
 2. オフラインでアクセスした場合はローカルストレージのデータを表示
