@@ -1,3 +1,10 @@
+## 【Rails】関連先モデルの一覧を取得
+```ruby
+Customer.reflect_on_all_associations.map(&:name)
+```
+
+---
+
 ## 【Vue】毎回忘れる`v-slot`ディレクティブ
 ```html
 <main-container>
