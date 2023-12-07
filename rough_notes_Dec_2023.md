@@ -1,3 +1,14 @@
+## 【JS】配列からfalsyな要素を除去する方法
+- nullやundefinedなどのfalsyな要素を除去したいとき、`filter`を使うのが常識らしい
+```js
+const words = ['foo', 'bar', null, 'baz', undefined, false, 'hoge']
+words.filter((word) => word)
+
+=> ['foo', 'bar', 'baz', 'hoge']
+```
+
+---
+
 ## 【Rails】関連先モデルの一覧を取得
 ```ruby
 Customer.reflect_on_all_associations.map(&:name)
