@@ -1,3 +1,20 @@
+## 【Ruby】配列からblankやfalsyな要素を除去する方法
+- Rubyの`compact`メソッド
+- Railsの`compact_blank`メソッド
+```ruby
+arr = [1, "", nil, 2, " ", [], {}, false, true]
+
+# nilのみ除去
+[1, "", nil, 2, " ", [], {}, false, true].compact
+=> [1, "", 2, " ", [], {}, false, true]
+
+# nilに加えてblankやfalsyな要素も除去(※Rails専用)
+[1, "", nil, 2, " ", [], {}, false, true].compact_blank
+=> [1, 2, true]
+```
+
+---
+
 ## 【JS】配列からfalsyな要素を除去する方法
 - nullやundefinedなどのfalsyな要素を除去したいとき、`filter`を使うのが常識らしい
 ```js
