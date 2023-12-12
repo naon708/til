@@ -1,6 +1,6 @@
 ## 【Ruby】配列からblankやfalsyな要素を除去する方法
 - Rubyの`compact`メソッド
-- Railsの`compact_blank`メソッド
+- Railsの`compact_blank`メソッド(Rails6.1から追加)
 ```ruby
 arr = [1, "", nil, 2, " ", [], {}, false, true]
 
