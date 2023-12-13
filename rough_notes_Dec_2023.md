@@ -1,6 +1,9 @@
-## 【セキュリティ】`TOTP`(`Time-based One-Time Password`)
+## 【セキュリティ】`TOTP`(Time-based One-Time Password)
 - ざっくり、ワンタイムパスワード(の生成手順)のこと。
 - PC上で2FAを行いたい場合は[KeePassXC](https://keepassxc.org/)のようなツールもある。
+### OTPと何が違う？
+- `TOTP`は`OTP`を生成する方式のこと。他にも`HOTP`(Hash-based Message Authentication Code(HMAC) OTP)がある。
+- 詳細はまた今度
 
 ### TOTPに対応する認証アプリケーション
 - Google Authenticator
