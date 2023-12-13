@@ -1,3 +1,19 @@
+## YAMLファイルの`&`ってなんだ
+- 「アンカー」
+- アンカーを定義することで値を使い回せる。YAMLファイルをDRYに保つための記述。
+```yaml
+ja:
+  employment_status: &employment_status
+    normal: 通常勤務
+    absent: 休職中
+    retired: 退職済み
+  something_else:
+    hoge: ほげ
+    <<: *employment_status
+```
+
+---
+
 ## 【Ruby】配列からblankやfalsyな要素を除去する方法
 - Rubyの`compact`メソッド
 - Railsの`compact_blank`メソッド(Rails6.1から追加)
