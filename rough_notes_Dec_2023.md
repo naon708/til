@@ -1,3 +1,14 @@
+## 【セキュリティ】`TOTP`(`Time-based One-Time Password`)
+- ざっくり、ワンタイムパスワード(の生成手順)のこと。
+- PC上で2FAを行いたい場合は[KeePassXC](https://keepassxc.org/)のようなツールもある。
+
+### TOTPに対応する認証アプリケーション
+- Google Authenticator
+- Microsoft Authenticator
+- など
+
+---
+
 ## YAMLファイルの`&`ってなんだ
 - 「アンカー」
 - アンカーを定義することで値を使い回せる。YAMLファイルをDRYに保つための記述。
