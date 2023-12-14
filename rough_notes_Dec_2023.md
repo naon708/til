@@ -4,7 +4,7 @@
 const getEmployeeNumbersInCsv = (file: File): Promise<string[]> =>
   new Promise((resolve, reject) => {
     Papa.parse(file, {
-      complete: () => {
+      complete: (results) => {
         // TODO: 社員番号を抽出する処理
         resolve(employeeNumbers)
       },
@@ -25,7 +25,7 @@ const getEmployeeNumberFromCsv = (file: File): Promise<string[]> =>
     Papa.parse(file, {
       // complete: () => { ... }
       // completeというプロパティ(キー)に関数(値)を割り当てている。complete()のように関数を呼び出す訳では無い。(コールバック関数)
-      complete: () => {
+      complete: (results) => {
         // TODO: 社員番号を抽出する処理
         resolve(employeeNumbers)
       },
@@ -35,6 +35,23 @@ const getEmployeeNumberFromCsv = (file: File): Promise<string[]> =>
   })
 ```
 
+### PapaParseの解析結果
+`complete`
+> パース完了時に実行するコールバックです。パース結果を受け取ります。
+
+
+```
+> result.data
+[0] => ['名前', '社員番号', 'メールアドレス']
+
+[1] => ['従業員 太郎', '101', 'carely-dev+101@icare-carely.co.jp']
+
+[2] => ['人事 太郎', '201', 'carely-dev+201@icare-carely.co.jp']
+
+[3] => ['人事 産業医 太郎', '701', 'carely-dev+701@icare-carely.co.jp']
+
+[4] => ['']
+```
 ---
 
 ## 【セキュリティ】`TOTP`(Time-based One-Time Password)
