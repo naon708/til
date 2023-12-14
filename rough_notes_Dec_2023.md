@@ -1,3 +1,26 @@
+## 【JS】async関数は常にPromiseを返す
+**OK**
+```ts
+// async関数の中で、awaitを使って解決済みの値(value)を参照している
+async function asyncFunction() {
+  const value = await getPromiseFunction(args)
+  console.log(value)
+}
+// async関数を直接呼び出している
+asyncFunction()
+```
+**NG**
+```ts
+const asyncFunction = async () => {
+  const value = await getPromiseFunction(args)
+  return value
+}
+// async関数の返り値を参照している。async関数そのものはPromiseオブジェクトを返すので、valueの値が解決された値だとしても最終的にPromiseオブジェクトが返る
+console.log(asyncFunction())
+```
+
+---
+
 ## 【コードリーティング】コールバック関数、Promise、PapaParse
 ### 元コード
 ```ts
