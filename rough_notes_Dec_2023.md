@@ -1,4 +1,4 @@
-## (wip)コールバック関数、Promise、Papa.parse
+## 【コードリーティング】コールバック関数、Promise、PapaParse
 ### 元コード
 ```ts
 const getEmployeeNumbersInCsv = (file: File): Promise<string[]> =>
