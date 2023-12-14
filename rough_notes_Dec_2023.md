@@ -1,3 +1,42 @@
+## (wip)コールバック関数、Promise、Papa.parse
+### 元コード
+```ts
+const getEmployeeNumbersInCsv = (file: File): Promise<string[]> =>
+  new Promise((resolve, reject) => {
+    Papa.parse(file, {
+      complete: () => {
+        // TODO: 社員番号を抽出する処理
+        resolve(employeeNumbers)
+      },
+      error: (error) => reject(error),
+    })
+  })
+
+```
+### コードリーティング後
+```ts
+// 返り値が1つの式のみなので {} を省略している (コールバック関数がたくさん書かれているけど式自体は new Promise の1つ)
+const getEmployeeNumberFromCsv = (file: File): Promise<string[]> =>
+  // new Promise((resolve, reject) => { ... })
+  // コンストラクター。Promiseオブジェクトを生成する。resolve/reject の2つのコールバック関数を持つ。
+  new Promise((resolve, reject) => {
+    // Papa.parse(file, { ... })
+    // PapaParseライブラリに含まれる関数。CSVファイルの内容を解析する。fileオブジェクトとPapaParseのオプションオブジェクト(https://www.papaparse.com/docs#config)
+    Papa.parse(file, {
+      // complete: () => { ... }
+      // completeというプロパティ(キー)に関数(値)を割り当てている。complete()のように関数を呼び出す訳では無い。(コールバック関数)
+      complete: () => {
+        // TODO: 社員番号を抽出する処理
+        resolve(employeeNumbers)
+      },
+      // errorというプロパティに関数を割り当てている。(コールバック関数)
+      error: (error) => reject(error),
+    })
+  })
+```
+
+---
+
 ## 【セキュリティ】`TOTP`(Time-based One-Time Password)
 - ざっくり、ワンタイムパスワード(の生成手順)のこと。
 - PC上で2FAを行いたい場合は[KeePassXC](https://keepassxc.org/)のようなツールもある。
