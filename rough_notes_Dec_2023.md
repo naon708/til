@@ -1,3 +1,22 @@
+## 【TS】型定義のBRANDってなに
+```ts
+file: File & BRAND<"Upload">
+```
+> `&`はTypeScriptの交差型(Intersection Types)を表します。これは、複数の型を一つに結合することで、それら全ての型を兼ね備えた新しい型を作り出します。したがって、File & BRAND<"Upload">はFile型とBRAND<"Upload">型の両方の特性を持つ新しい型を定義しています。
+
+> 次に、`BRAND<"Upload">`についてですが、これはTypeScriptのType Branding（型ブランディング）と呼ばれるテクニックを使用しています。Type Brandingは、型の互換性を破るために、対象となる型にダミーのオブジェクト型を交差型として付け加えるテクニックです。これにより、同じ基本型（この場合はFile）でも、ブランドが異なれば異なる型として扱うことができます。
+
+```ts
+// e.g.
+type BRAND<K extends string> = { __brand: K };
+type File = { /* Fileのプロパティとメソッド */ };
+type UploadFile = File & BRAND<"Upload">;
+```
+
+- BRANDを付与することで、素のFile型や他BRANDのFile型との棲み分けができる
+
+---
+
 ## 【Vue】mountのタイミング
 ```ts
 setup() {
