@@ -1,3 +1,4 @@
+
 ## 【TS】型定義のBRANDってなに
 ```ts
 file: File & BRAND<"Upload">
@@ -120,6 +121,22 @@ const getEmployeeNumberFromCsv = (file: File): Promise<string[]> =>
 - Google Authenticator
 - Microsoft Authenticator
 - など
+
+---
+
+## YAMLファイルの`|`ってなんだ
+- 改行コードを付与する
+- `|` と `|-` は文字列の最後にも適用するかどうか
+```yml
+# "おはよう\nおやすみ\n" になる
+greet: |
+  おはよう
+  おやすみ
+# "ごはん\nパン" になる
+food: |-
+  ごはん
+  パン
+```
 
 ---
 
