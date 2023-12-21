@@ -52,6 +52,9 @@ const asyncFunction = async () => {
 console.log(asyncFunction())
 ```
 
+### 例えばTypeScriptで、
+関数の返り値が `Promise<boolean>` となっている場合、awaitで受け取ることで `boolean` として扱えるようになる
+
 ---
 
 ## 【コードリーティング】コールバック関数、Promise、PapaParse
