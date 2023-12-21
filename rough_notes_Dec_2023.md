@@ -5,9 +5,11 @@ file: File & BRAND<"Upload">
 ```
 > `&`はTypeScriptのインターセクション型(Intersection Types)を表します。これは、複数の型を一つに結合することで、それら全ての型を兼ね備えた新しい型を作り出します。
 >
-> したがって、File & BRAND<"Upload">はFile型とBRAND<"Upload">型の両方の特性を持つ新しい型を定義しています。
+> したがって、「File & BRAND<"Upload">」は「File型」と「BRAND<"Upload">型」の両方の特性を持つ新しい型を定義しています。
 
-> `BRAND<"Upload">`は、TypeScriptのType Branding（型ブランディング）と呼ばれるテクニックを使用しています。これは、型の互換性を破るために、対象となる型にダミーのオブジェクト型を交差型として付け加えるテクニックです。これにより、同じ基本型（この場合はFile）でも、ブランドが異なれば異なる型として扱うことができます。
+> `BRAND<"Upload">`は、TypeScriptのType Branding（型ブランディング）と呼ばれるテクニックを使用しています。これは、型の互換性を破るために、対象となる型にダミーのオブジェクト型を交差型として付け加えるテクニックです。
+>
+> これにより、同じ基本型（この場合はFile）でも、ブランドが異なれば異なる型として扱うことができます。
 
 ```ts
 // e.g.
@@ -16,7 +18,7 @@ type File = { /* Fileのプロパティとメソッド */ };
 type UploadFile = File & BRAND<"Upload">;
 ```
 
-- BRANDを付与することで、素のFile型や他BRANDのFile型との棲み分けができる
+- `BRAND`を付与することで、素のFile型や他BRANDのFile型との棲み分けができる
 
 ---
 
