@@ -51,6 +51,11 @@ disable_ddl_transaction!
 - マイグレーションの途中でエラーとなった場合、データベースのスキーマに不整合が起きる
 - そのためデフォルトでトランザクションを張るようになっている
 - 同時実行インデックスの場合はトランザクションを張るとエラーになるので上記の記述が必要で、このマイグレーションファイルには他のマイグレーションを含めないようにする
+
+### 参考
+- https://dangerous-animal141.hatenablog.com/entry/2020/09/06/121232
+- https://thoughtbot.com/blog/how-to-create-postgres-indexes-concurrently-in
+
 ---
 
 ## 【TS】型定義のBRANDってなに
