@@ -1,3 +1,57 @@
+## 【Rails】マイグレーションでカラムにインデックスを付与する際、concurrentlyでDBロックを防ぎ、ダウンタイムを回避する
+### 題材
+```ruby
+class AddForeignKeyToTables < ActiveRecord::Migration
+  disable_ddl_transaction!
+
+  def change
+    add_reference :table_name, :column_name, :integer, index: { algorithm: :concurrently }
+  end
+end
+```
+### 同時実行
+```ruby
+add_reference :table_name, :column_name, :integer, index: { algorithm: :concurrently }
+```
+- データのパターンが多いカラムにはインデックスを付与することでパフォーマンスが上がる(主にSELECT文を使うとき)
+  - フラグとかステータスはパターンが限られているので該当しないことが多そう
+  - Primary KeyとかForeign Keyも。(Railsのマイグレーションだとカラム追加時に自動で付与される)
+- DBのインデックス作成処理中は、対象テーブルへの書き込みがロックされる。なので既存のテーブルでインデックスを作成する際は、ダウンタイムが発生する。(読み取りはできるが書き込みができない)
+- それを防ぐために、 `CREATE INDEX CONCURRENTLY` というオプションをPostgreSQLが提供している。
+  - ロックを行わずにインデックスを作成できるオプション。(その分通常の作成処理より時間がかかるがダウンタイムを回避できる)
+- それをRailsのマイグレーションでやろうとすると上記のコードになる
+
+### `index: { algorithm: :concurrently }`という書き方がWebで見当たらなかった
+- そもそも `algorithm: :concurrently` は `add_index` のオプション。
+- `add_reference`メソッドにindexのオプションを渡せる仕様だったのでこの書き方ができるっぽい.
+
+```ruby
+def add_reference(table_name, ref_name, **options)
+  ReferenceDefinition.new(ref_name, **options).add(table_name, self)
+end
+
+class ReferenceDefinition # :nodoc:
+  def initialize
+    # hoge
+  end
+
+  def add(table_name, connection)
+    if index
+      connection.add_index(table_name, column_names, **index_options(table_name))
+    end
+  end
+end
+```
+
+### (注意点)同時実行インデックスはトランザクションの外で作成しなければいけない
+```ruby
+# トランザクションを無効化する記述
+disable_ddl_transaction! 
+```
+- マイグレーションの途中でエラーとなった場合、データベースのスキーマに不整合が起きる
+- そのためデフォルトでトランザクションを張るようになっている
+- 同時実行インデックスの場合はトランザクションを張るとエラーになるので上記の記述が必要で、このマイグレーションファイルには他のマイグレーションを含めないようにする
+---
 
 ## 【TS】型定義のBRANDってなに
 ```ts
