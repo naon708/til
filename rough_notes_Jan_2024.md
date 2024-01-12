@@ -1,7 +1,13 @@
 ## 【Rails】関連先がないレコードを取得する
+親モデルに紐づくレコードが存在しないオブジェクトを取得する
 ```ruby
+# こう書く必要があったのが
+ParentModel.left_joins(:child_model).where(child_model: { id: nil })
+
+# こう書ける
 ParentModel.where.missing(:child_model)
 ```
+ActiveRecordメソッドチェーンで繋げることもできる
 
 ---
 
