@@ -9,6 +9,8 @@ ParentModel.where.missing(:child_model)
 ```
 ActiveRecordメソッドチェーンで繋げることもできる
 
+参考: https://techracho.bpsinc.jp/hachi8833/2021_05_26/107973
+
 ---
 
 ## 【Rails】〇〇文字以上の氏名ってどれくらいあるんだろう？を調べた
