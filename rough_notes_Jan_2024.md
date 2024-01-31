@@ -43,6 +43,10 @@ end
 ---
 
 ## 【SQL】COALESCE
+```ruby
+some_tables_uniq_index   (hoge_id, COALESCE(deleted_at, 'infinity'::timestamp without time zone)) UNIQUE
+```
+### 何のための記述？
 wip
 
 ---
