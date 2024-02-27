@@ -3,6 +3,19 @@
 - https://book.mynavi.jp/ec/products/detail/id=120304
 
 # 本編
+
+## Chapter 3
+
+↓この角括弧のプロンプトの書き方はLinuxであることを表していたのか。。
+```bash
+# Mac
+ComputerName:~ UserName $
+
+# Linux
+[UserName@HostName~]#
+```
+
+## ~ Chapter 2
 - まず大前提
   - DockerはLinuxOS上でしか動かないし、コンテナ内にはLinuxのソフトウェアしかインストールできない
   - 普段MaｃでDockerを使えているのは、Docker for Macというデスクトップアプリが仮想のLinux環境を提供してくれているから
@@ -19,3 +32,5 @@
   - イメージを共有すれば他のマシンでも同様の環境を構築できる
   - コンテナを改造して新たなイメージを作ることもできる
   - 基本的にはDocker Hubなどからイメージをpullしてきて、開発するプロダクトに合わせてカスタマイズしてイメージ化し、それをチームで共有して開発するはず
+- Dockerのライフサイクル
+  - 作成→起動→停止→削除
