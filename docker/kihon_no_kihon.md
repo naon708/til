@@ -4,6 +4,15 @@
 
 # 本編
 
+## Chapter 4
+- `docker start`とか`docker run`は`container`が省略されている
+```bash
+# 下記は同義
+docker container run
+docker run
+```
+
+
 ## Chapter 3
 
 EC2でDockerを使う手順
