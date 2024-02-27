@@ -5,9 +5,9 @@
 # 本編
 
 ## Chapter 4
-- `docker start`とか`docker run`は`container`が省略されている
+- `docker start` とか `docker run` コマンドは、 `container` (上位コマンド)が省略されている
 ```bash
-# 下記は同義
+# 下記は同義だが、上がコマンド再編成後の新しい書き方なのでそちらで慣れておきたい
 docker container run
 docker run
 ```
