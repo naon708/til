@@ -65,4 +65,5 @@ ComputerName:~ UserName $
   - コンテナを改造して新たなイメージを作ることもできる
   - 基本的にはDocker Hubなどからイメージをpullしてきて、開発するプロダクトに合わせてカスタマイズしてイメージ化し、それをチームで共有して開発するはず
 - Dockerのライフサイクル
-  - 作成→起動→停止→削除
+  - 作成→起動→停止→破棄(create->start->stop->remove)
+  - create と start をまとめて run としたりする
