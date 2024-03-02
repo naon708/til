@@ -5,6 +5,19 @@
 # 本編
 
 ## Chapter 4
+- xxxというイメージを元にyyyというコンテナを起動(作成・開始)する
+- `docker run --name yyy -d xxx`
+
+```
+# ローカルに httpd のイメージが見つからないのでダウンロードした
+Unable to find image 'httpd:latest' locally
+latest: Pulling from library/httpd
+f546e941f15b: Pull complete
+Status: Downloaded newer image for httpd:latest
+```
+
+---
+
 - ボリューム (`docker volume`)
   - Docker Engine の上に乗っかっている記憶領域
   - コンテナは停止するたびに壊すので、そのままだとデータを永続化出来ない
@@ -21,7 +34,6 @@
 docker container run
 docker run
 ```
-
 
 ## Chapter 3
 
