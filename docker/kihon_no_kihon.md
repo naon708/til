@@ -5,6 +5,55 @@
 # 本編
 
 ## Chapter 5
+```
+test-user
+iR3Yg(hI3!zcQHsOV4
+```
+
+### WordPressコンテナ作成
+
+### MySQLコンテナ作成
+
+
+### ネットワーク作成
+```
+docker network create wordpress000net1
+
+docker network inspect a3bb407274bc                                                                                      ✔
+[
+    {
+        "Name": "wordpress000net1",
+        "Id": "a3bb407274bc5b163f4c7972cd70f6ea724afac6650a7dbd2ca434c23cd4aeaf",
+        "Created": "2024-03-03T12:29:35.361572675Z",
+        "Scope": "local",
+        "Driver": "bridge",
+        "EnableIPv6": false,
+        "IPAM": {
+            "Driver": "default",
+            "Options": {},
+            "Config": [
+                {
+                    "Subnet": "172.22.0.0/16",
+                    "Gateway": "172.22.0.1"
+                }
+            ]
+        },
+        "Internal": false,
+        "Attachable": false,
+        "Ingress": false,
+        "ConfigFrom": {
+            "Network": ""
+        },
+        "ConfigOnly": false,
+        "Containers": {},
+        "Options": {},
+        "Labels": {}
+    }
+]
+```
+
+---
+
 - ネットワークを作成→MySQLのコンテナを作成→WordPressのコンテナを作成
 - MySQLコンテナを先に作ってWordPressコンテナ作成時にDB用の環境変数やらなにやらを指定する
 
