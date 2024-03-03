@@ -5,6 +5,12 @@
 # 本編
 
 ## Chapter 4
+```
+CONTAINER ID   IMAGE     COMMAND                  CREATED         STATUS         PORTS                  NAMES
+a06bd2466ce7   nginx     "/docker-entrypoint.…"   4 seconds ago   Up 3 seconds   0.0.0.0:8080->80/tcp   nginx000ex7
+```
+
+---
 
 - コンテナを停止していないとコンテナを破棄できない
 - コンテナを破棄していないとイメージを破棄できない
