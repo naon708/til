@@ -4,8 +4,19 @@
 
 # 本編
 
+## Chapter 5
+- ネットワークを作成→MySQLのコンテナを作成→WordPressのコンテナを作成
+- MySQLコンテナを先に作ってWordPressコンテナ作成時にDB用の環境変数やらなにやらを指定する
+
+> The WORDPRESS_DB_NAME needs to already exist on the given MySQL server it will not be created by the wordpress container.
+> 
+> WORDPRESS_DB_NAME は、指定された MySQL サーバー上にすでに存在している必要があります。
+
 ## Chapter 4
+
 ```
+docker ps
+
 CONTAINER ID   IMAGE     COMMAND                  CREATED         STATUS         PORTS                  NAMES
 a06bd2466ce7   nginx     "/docker-entrypoint.…"   4 seconds ago   Up 3 seconds   0.0.0.0:8080->80/tcp   nginx000ex7
 ```
