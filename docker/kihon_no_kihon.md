@@ -104,3 +104,19 @@ ComputerName:~ UserName $
 - Dockerのライフサイクル
   - 作成→起動→停止→破棄(create->start->stop->remove)
   - create と start をまとめて run としたりする
+
+# おまけ
+## `<none> のイメージ`
+- たまに`<none>`というイメージが出来ていることがある
+  - これはイメージ名が重複している場合にできるもの(重複したイメージ名はbuildできない仕様)
+  - 同名のイメージをbuildしようとしたときに、古いものが`<none>`に置き換わる
+  - 特に必要ない場合がほとんどらしく、不要なイメージは容量圧迫するので削除すると良い(`none`のイメージを参照しているコンテナがある場合は削除できないが、その場合はエラーで教えてくれる)
+
+```
+docker image ls -f "dangling=true" -q                                                                                      ✔
+07259e822fbb
+94232dc1d70c
+...
+
+docker image rm $(docker image ls -f "dangling=true" -q)
+```
