@@ -11,55 +11,61 @@ iR3Yg(hI3!zcQHsOV4
 ```
 
 ### WordPressコンテナ作成
+- 「アプリケーション本体(プログラム)+プログラム実行環境+Webサーバー」のセットになっているイメージを使う(というか公式のWordPressイメージがそうなっている)
+- このようなセットになっているコンテナとDBコンテナを組み合わせた運用はよくあるらしい
 
 ### MySQLコンテナ作成
+- ルートパスやDB名など、指定する環境変数が多い
 
+[参考](https://hub.docker.com/_/mysql#Environment%20Variables:~:text=tag%20%2D%2Dverbose%20%2D%2Dhelp-,Environment%20Variables,-When%20you%20start)
 
 ### ネットワーク作成
 ```
 docker network create wordpress000net1
+```
 
+```bash
+# 詳細確認
 docker network inspect a3bb407274bc                                                                                      ✔
-[
-    {
-        "Name": "wordpress000net1",
-        "Id": "a3bb407274bc5b163f4c7972cd70f6ea724afac6650a7dbd2ca434c23cd4aeaf",
-        "Created": "2024-03-03T12:29:35.361572675Z",
-        "Scope": "local",
-        "Driver": "bridge",
-        "EnableIPv6": false,
-        "IPAM": {
-            "Driver": "default",
-            "Options": {},
-            "Config": [
-                {
-                    "Subnet": "172.22.0.0/16",
-                    "Gateway": "172.22.0.1"
-                }
-            ]
-        },
-        "Internal": false,
-        "Attachable": false,
-        "Ingress": false,
-        "ConfigFrom": {
-            "Network": ""
-        },
-        "ConfigOnly": false,
-        "Containers": {},
-        "Options": {},
-        "Labels": {}
+...
+"Containers": {},
+...
+```
+作成したネットワーク上にコンテナを構築した後↓↓
+```bash
+"Containers": {
+    "358ae7e8cfcac886405b1f3740ac0de39a0894f893beab1e57958f78f00cb6a5": {
+        "Name": "wordpress000ex12",
+        "EndpointID": "ff69ad7ae60e06f7cb45d0f3efd9c610e0fdfa15e0093758840f959cecddca15",
+        "MacAddress": "02:42:ac:16:00:03",
+        "IPv4Address": "172.22.0.3/16",
+        "IPv6Address": ""
+    },
+    "9c0b356b1c9c3eea70c140087804c6893df5c3dc461a7fc159bc38d7bc93c247": {
+        "Name": "mysql000ex11",
+        "EndpointID": "cff70db56c748fcd527f9a07d71dc1c80d81cec6072fbba1abd20eca87724e11",
+        "MacAddress": "02:42:ac:16:00:02",
+        "IPv4Address": "172.22.0.2/16",
+        "IPv6Address": ""
     }
-]
+},
 ```
 
 ---
 
+### WordPress構築の流れ
 - ネットワークを作成→MySQLのコンテナを作成→WordPressのコンテナを作成
 - MySQLコンテナを先に作ってWordPressコンテナ作成時にDB用の環境変数やらなにやらを指定する
 
 > The WORDPRESS_DB_NAME needs to already exist on the given MySQL server it will not be created by the wordpress container.
 > 
 > WORDPRESS_DB_NAME は、指定された MySQL サーバー上にすでに存在している必要があります。
+
+
+---
+
+- LAMP構成(Linux/Apache/MySQL/PHP)
+- Webアプリケーションの構成は大体これで、ApacheがNginxに代わったり、MySQLがPostgreSQL、PHPがRubyに代替されたりするが抽象化すると「LinuxOS+Webサーバー+RDBMS+アプリケーション」になってる(SPAだとフロントとAPIでもう１つ分かれるかな)
 
 ## Chapter 4
 
