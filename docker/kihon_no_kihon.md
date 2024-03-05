@@ -5,6 +5,28 @@
 # 本編
 
 ## Chapter 5
+
+### Redmine と MySQL のコンテナ構築
+```bash
+# sample command
+
+# mysql
+docker run -d --name some-mysql --network some-network -e MYSQL_USER=redmine -e MYSQL_PASSWORD=secret -e MYSQL_DATABASE=redmine -e MYSQL_RANDOM_ROOT_PASSWORD=1 mysql:5.7
+# redmine
+docker run -d --name some-redmine --network some-network -e REDMINE_DB_POSTGRES=some-postgres -e REDMINE_DB_USERNAME=redmine -e REDMINE_DB_PASSWORD=secret redmine
+```
+| 項目 | オプション | 値 |
+|--------|--------|--------|
+| ネットワーク | Cell | redmine_net |
+| MySQLコンテナ名 | Cell | mysql_ctr |
+| Redmineコンテナ名 | Cell | redmine_ctr |
+| MYSQL_ROOT_PASSWORD | Cell | mysqlrootpass |
+| MYSQL_DATABASE | Cell | redmine_db |
+| MYSQL_USER | Cell | redmine_db_user |
+| MYSQL_PASSWORD | Cell | redmine_db_pass |
+
+
+
 ```
 test-user
 iR3Yg(hI3!zcQHsOV4
