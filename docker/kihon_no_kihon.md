@@ -6,7 +6,7 @@
 
 ## Chapter 5
 
-### Redmine と MySQL のコンテナ構築
+### 【memo】Redmine と MySQL のコンテナ構築
 ```bash
 # sample command
 
@@ -15,26 +15,26 @@ docker run -d --name some-mysql --network some-network -e MYSQL_USER=redmine -e 
 # redmine
 docker run -d --name some-redmine --network some-network -e REDMINE_DB_POSTGRES=some-postgres -e REDMINE_DB_USERNAME=redmine -e REDMINE_DB_PASSWORD=secret redmine
 ```
-| 項目 | オプション | 値 |
-|--------|--------|--------|
-| ネットワーク | Cell | redmine_net |
-| MySQLコンテナ名 | Cell | mysql_ctr |
-| Redmineコンテナ名 | Cell | redmine_ctr |
-| MYSQL_ROOT_PASSWORD | Cell | mysqlrootpass |
-| MYSQL_DATABASE | Cell | redmine_db |
-| MYSQL_USER | Cell | redmine_db_user |
-| MYSQL_PASSWORD | Cell | redmine_db_pass |
-
-
-
-```
-test-user
-iR3Yg(hI3!zcQHsOV4
-```
+| 項目 | 値 |
+|--------|--------|
+| ネットワーク | `redmine_net` |
+| MySQLコンテナ名 | `mysql_ctr` |
+| Redmineコンテナ名 | `redmine_ctr` |
+| MYSQL_ROOT_PASSWORD | `mysqlrootpass` |
+| MYSQL_DATABASE | `redmine_db` |
+| MYSQL_USER | `redmine_db_user` |
+| MYSQL_PASSWORD | `redmine_db_pass` |
+| ポート | `8088:3000` |
 
 ### WordPressコンテナ作成
 - 「アプリケーション本体(プログラム)+プログラム実行環境+Webサーバー」のセットになっているイメージを使う(というか公式のWordPressイメージがそうなっている)
 - このようなセットになっているコンテナとDBコンテナを組み合わせた運用はよくあるらしい
+
+```
+# memo
+test-user
+iR3Yg(hI3!zcQHsOV4
+```
 
 ### MySQLコンテナ作成
 - ルートパスやDB名など、指定する環境変数が多い
