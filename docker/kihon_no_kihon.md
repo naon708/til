@@ -3,6 +3,14 @@
 - https://book.mynavi.jp/ec/products/detail/id=120304
 
 # 本編
+## Chapter 6
+
+
+### copy
+```bash
+docker cp ./index.html some_ctr:/usr/local/hoge/index.html
+```
+
 
 ## Chapter 5
 
