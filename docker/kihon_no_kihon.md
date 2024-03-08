@@ -18,10 +18,36 @@
  
 ---
 
-- ボリュームマウント
-  - Dokcer Engineが管理している領域内にボリュームを作成してコンテナにマウントする
-- バインドマウント
-  - 物理マシン内の特定のディレクトリをコンテナにマウントする
+#### ボリュームマウント
+- Dokcer Engineが管理している領域内にボリュームを作成してコンテナにマウントする
+
+  ```bash
+  docker run --name apache_ctr -d -p 8090:80 -v apache_vol:/usr/local/apache2/htdocs httpd
+
+  docker inspect apache_ctr
+  # 出力結果の抜粋
+  "Mounts": [
+      {
+          "Type": "volume",
+          "Name": "apa000vol1",
+          "Source": "/var/lib/docker/volumes/apa000vol1/_data",
+          "Destination": "/usr/local/apache2/htdocs",
+          "Driver": "local",
+          "Mode": "z",
+          "RW": true,
+          "Propagation": ""
+      }
+  ],
+  ```
+#### バインドマウント
+- 物理マシン内の特定のディレクトリをコンテナにマウントする
+- runコマンドの`-v`オプションでマウント元とマウント先を指定するだけ
+
+---
+
+- apache(httpd)の　htdocs/　配下にファイルを置くとファイル名がリンクになってクリックするとファイル名のパスに遷移した
+  - ディレクトリを一覧化して各ファイル名をパスに指定したリンクを生成するapacheの機能らしい
+  - メリットはよくわからなかった
 
 ### copy
 ```bash
