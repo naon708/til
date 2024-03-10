@@ -1,3 +1,16 @@
+## mysqlコンテナで日本語が入力できない問題
+- 原因は細かく追求できていないが、各環境で念入りにutf8の設定を入れてなんとか解決
+```bash
+# コンテナ起動時
+docker run --name mysql_ctr -dit -e MYSQL_ROOT_PASSWORD=mysqlrootpass -e MYSQL_DATABASE=hoge_db -e MYSQL_USER=hoge_db_user -e MYSQL_PASSWORD=hoge_db_pass mysql --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci --default-authentication-plugin=mysql_native_password
+
+# コンテナ内のbash起動時
+docker exec -e LANG=C.UTF-8 -it mysql_ctr /bin/bash
+
+# mysql起動時
+mysql -u root -p --default-character-set=utf8mb4
+```
+
 ## 既に目的のイメージを使ったコンテナが存在する場合
 - コンテナ名を違うものにして作成すれば、同じイメージを使っても問題ない
 
