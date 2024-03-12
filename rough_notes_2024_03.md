@@ -42,4 +42,4 @@ SomeThreshold.last
 ### 結論
 - 4番目の方法で実現できた。
 - デフォルト値を指定してマイグレーションすると既存レコードにもカラムにも値が入ることが確認できた
-- `change_column_default`メソッドは from と to の指定をしないとRollbackできないので注意
+- `change_column_default`メソッドは from と to の指定をしないとRollbackできないので注意（[参考](https://railsguides.jp/active_record_migrations.html#%E3%82%AB%E3%83%A9%E3%83%A0%E3%82%92%E5%A4%89%E6%9B%B4%E3%81%99%E3%82%8B)）
