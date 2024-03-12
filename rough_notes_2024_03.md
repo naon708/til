@@ -15,7 +15,7 @@ class AddColumnsHoge < ActiveRecord::Migration[7.0]
     add_column :some_thresholds, :test_piyo, :float, default: 100.0, null: false, comment: "ぴよ"
     # 4. デフォルトNULLで設定　→　デフォルトを100に設定
     add_column :some_thresholds, :test_muge, :float, default: nil, comment: "むげ"
-    change_column_default :some_thresholds, :test_muge, 100.0
+    change_column_default :some_thresholds, :test_muge, from: nil, to: 100.0
   end
 end
 ```
@@ -42,3 +42,4 @@ SomeThreshold.last
 ### 結論
 - 4番目の方法で実現できた。
 - デフォルト値を指定してマイグレーションすると既存レコードにもカラムにも値が入ることが確認できた
+- `change_column_default`メソッドは from と to の指定をしないとRollbackできないので注意
