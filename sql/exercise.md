@@ -1,4 +1,4 @@
-## CASE文でNULLを条件に指定できない
+## 【MYSQL】CASE文でNULLを条件に指定できない
 ```sql
 -- NG
 SELECT CASE name WHEN NULL 'NONAME' ELSE name END FROM hoge;
