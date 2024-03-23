@@ -1,6 +1,6 @@
 ## COUNT関数にカラムを指定すると値がNULLのレコードは無視される
 ```sql
-mysql> select count(nullable_column) from goals;
+mysql> select count(nullable_column) from some_tables;
 +-----------+
 | count(xx) |
 +-----------+
