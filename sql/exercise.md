@@ -1,3 +1,13 @@
+## COUNT関数にカラムを指定すると値がNULLのレコードは無視される
+```sql
+mysql> select count(nullable_column) from goals;
++-----------+
+| count(xx) |
++-----------+
+|       188 |
++-----------+
+```
+
 ## 【MYSQL】CASE文でNULLを条件に指定できない
 ```sql
 -- NG
