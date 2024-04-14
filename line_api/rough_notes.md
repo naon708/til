@@ -1,4 +1,7 @@
 ## memo
+- ナローキャストメッセージの仕様とユースケースの解像度がまだ低い
+
+## memo
 - LINE Developer 画面で設定した Webhook URL = GASのデプロイURL
 - 公式LINEのメンバーアカウントでテキストメッセージ送る→LINE API が受取り Webhook URL に指定したURLにWebhookを送信する→GASコードが受取り、`チャネルアクセストークン`を検証したり返信文章を生成して　LINE API　にレスポンスする
 - `userId` -> プロバイダー毎にユーザーを識別するためのID。 `LINE ID` とは別物。
