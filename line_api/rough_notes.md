@@ -1,4 +1,4 @@
-## memo
+## ナローキャストメッセージ
 - ナローキャストメッセージの仕様とユースケースの解像度がまだ低い
   - オーディエンスを指定して送るもの
  
@@ -9,8 +9,13 @@
 
 <img width="1146" alt="スクリーンショット 2024-04-14 23 51 56" src="https://github.com/naon708/til/assets/77439261/c0cd8af7-fdf7-4c23-a02c-2a096b8c0099">
 
+### 公式アカウントにある程度メンバー数がないと送れない
+- そもそも絞り込み対象のユーザーが100人以上いないとエラー
+- 色々絞り込んで最終的にメッセージを送信する対象が50人以上いないとエラー
+- (例外を除く)
+- 詳しくは→ https://developers.line.biz/ja/reference/messaging-api/#send-narrowcast-message
 
-## memo
+## オウム返し実装時のメモ
 - LINE Developer 画面で設定した Webhook URL = GASのデプロイURL
 - 公式LINEのメンバーアカウントでテキストメッセージ送る→LINE API が受取り Webhook URL に指定したURLにWebhookを送信する→GASコードが受取り、`チャネルアクセストークン`を検証したり返信文章を生成して　LINE API　にレスポンスする
 - `userId` -> プロバイダー毎にユーザーを識別するためのID。 `LINE ID` とは別物。
