@@ -1,5 +1,14 @@
 ## memo
 - ナローキャストメッセージの仕様とユースケースの解像度がまだ低い
+  - オーディエンスを指定して送るもの
+ 
+### オーディエンスとは
+- 何らかの条件でユーザーをグルーピングできる。`1グループ = 1オーディエンス`。
+- LINE Bot の管理画面で作る。
+  - https://manager.line.biz/account/@139xbuew/broadcast/audience
+
+<img width="1146" alt="スクリーンショット 2024-04-14 23 51 56" src="https://github.com/naon708/til/assets/77439261/c0cd8af7-fdf7-4c23-a02c-2a096b8c0099">
+
 
 ## memo
 - LINE Developer 画面で設定した Webhook URL = GASのデプロイURL
