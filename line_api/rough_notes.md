@@ -1,6 +1,7 @@
 ## memo
 - LINE Developer 画面で設定した Webhook URL = GASのデプロイURL
 - 公式LINEのメンバーアカウントでテキストメッセージ送る→LINE API が受取り Webhook URL に指定したURLにWebhookを送信する→GASコードが受取り、`チャネルアクセストークン`を検証したり返信文章を生成して　LINE API　にレスポンスする
+- `userId` -> プロバイダー毎にユーザーを識別するためのID。 `LINE ID` とは別物。
 
 ### GAS が LINE API　にレスポンスするところ
 - CHANNEL_ACCESS_TOKEN(= チャネルアクセストークン)はチャネル(= 公式アカウントと同じ単位と考えるとわかりやすい)に設定されているトークン
@@ -69,5 +70,5 @@
 
 ## デバッグするためにログ出力できるようにする
 - スプシに出力する方法が上手くいかなかったのでGCPに紐づけてログ出力
-　　- 参考: https://zenn.dev/nenenemo/articles/db5f4d3930276c
+  - 参考: https://zenn.dev/nenenemo/articles/db5f4d3930276c
 - 紐づけできたら　`console.log` を仕込んで `clasp push && clasp deploy -i [deployment_id]` でURLを変えずにデプロイ
