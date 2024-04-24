@@ -27,3 +27,9 @@ end
     ::Date.parse("", false) unless "".blank?
     => nil
     ```
+- `Date._parse` を使うと各要素を　Hash で返してくれる
+  ```ruby
+  Date._parse("2024-04-24")
+  => {:year=>2024, :mon=>4, :mday=>24}
+  ```
+- ※メソッド名に `_` のプリフィックスが付いてるのは、利用者が使う前提ではないことを表す（ことが多い）
