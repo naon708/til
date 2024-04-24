@@ -7,7 +7,7 @@
 ## string/conversions.rb
 
 ### `to_date`
-```
+```ruby
 def to_date
   ::Date.parse(self, false) unless blank?
 end
