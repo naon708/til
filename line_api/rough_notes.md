@@ -1,3 +1,35 @@
+## アクションイベント
+### 日時選択イベント
+- ↓のような感じで返ってくる
+- postback の中の paramsプロパティ の中にLINEトーク画面で選択した日時の情報が入っている
+- 日時選択アクションの中で `postback.data` も指定できる
+```json
+[
+    {
+        "webhookEventId": "fjsdoafjoijsjd***********",
+        "source": {
+            "type": "user",
+            "userId": "sfdojfosfsjfdlsjfldsfh******"
+        },
+        "mode": "active",
+        "replyToken": "dlsfjdlkfjslkfsdjflsjl********",
+        "timestamp": 1714729715.281,
+        "postback": {
+            "data": "storeId=12345",
+            "params": {
+                "datetime": "2017-12-25T00:03"
+            }
+        },
+        "type": "postback",
+        "deliveryContext": {
+            "isRedelivery": false
+        }
+    }
+]
+```
+
+---
+
 ## ナローキャストメッセージ
 - ナローキャストメッセージの仕様とユースケースの解像度がまだ低い
   - オーディエンスを指定して送るもの
