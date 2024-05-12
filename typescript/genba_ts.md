@@ -5,6 +5,48 @@ https://book.mynavi.jp/ec/products/detail/id=142709
 
 ## memo
 ```ts
+// 関数型の型エイリアスを定義
+type AddFunction = (a: number, b: number) => number
+
+const someFunc: AddFunction = (a, b) => a + b
+```
+- 関数型
+  - 関数も引数と返り値の型をチェックできる
+
+---
+
+```ts
+const sumFunc = (a: number, b: number) => {
+  return a + b
+}
+```
+- パラメーターは型推論できない。
+- 関数の返り値は型推論されるので必ずしも書く必要はないが、ドキュメントとしての役割(返り値の型がわかりやすい)や開発効率(意図しない型を return していることにすぐ気付ける)のために明示するのも◯
+
+---
+
+- Unknown Type
+  - どんな値も入れられるが、unknown型として定義された変数は型チェックされる
+
+  ```ts
+  // 整数を代入したとしても
+  const unknownValue: unknown = 33
+  
+  // number型として定義できないし、
+  const numberValue: number = unknownValue
+  
+  // 算術演算もできない
+  unknownValue + 3
+  ```
+
+- unknown は「未知の値」。undefined は「未定義の値」。null は「空」。
+- undefined と null は値を設定できないときに一時的に入れる値。
+- null はオプショナルチェーン演算子(`?.`)と合わせて使うことが多そう(?)
+
+
+---
+
+```ts
 // Array型
 type arrayType = (number | boolean)[]
 
