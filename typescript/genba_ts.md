@@ -1,11 +1,30 @@
 現場で使えるTypeScript<br>
 https://book.mynavi.jp/ec/products/detail/id=142709
 
+## memo
+
+```ts
+// インデックスシグネチャの使い方
+interface SomeObj {
+  // 型変数の部分は慣例で K か key など
+  [key: string]: string | number;
+  [key: number]: number | string;
+  [key: `project_${number}`]: number; // テンプレート文字列
+}
+
+const hoge: SomeObj = {
+  foo: 'foo',
+  bar: 2,
+  3: 'baz',
+  project_1: 99
+}
+```
+- プロパティの値が決まっているものは、インデックスシグネチャを使わずに具体的に定義した方が良いと思う
+- 入る値が確定していないプロパティ（外部APIのレスポンスなど）に適しているらしい
+
 ---
 - 関数オーバーロードはあまり使わないほうが良い気が…（可読性が低いし、代替案結構ありそう）
 ---
-
-## memo
 
 ```ts
 // void
