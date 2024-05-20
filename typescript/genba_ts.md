@@ -2,8 +2,33 @@
 https://book.mynavi.jp/ec/products/detail/id=142709
 
 ---
+- 関数オーバーロードはあまり使わないほうが良い気が…（可読性が低いし、代替案結構ありそう）
+---
 
 ## memo
+
+```ts
+// void
+const greet = (name: string): void => {
+  console.log(`hello, ${name}`)
+}
+
+greet('alice')
+
+// never
+const throwError = (): never => {
+  throw new Error('This is error text !!!!!!!')
+}
+
+throwError()
+```
+- void は、呼び出し元に何も返さない
+  - が、関数は正常に終了する
+- never は、呼び出し元に制御を返さない
+  - 具体的には、無限ループや例外による異常終了のようなパターン
+
+---
+
 ```ts
 // 関数型の型エイリアスを定義
 type AddFunction = (a: number, b: number) => number
