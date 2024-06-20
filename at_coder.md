@@ -2,6 +2,31 @@
 
 テストケース: https://www.dropbox.com/sh/nx3tnilzqz7df8a/AAAYlTq2tiEHl5hsESw6-yfLa?e=2&dl=0
 
+## A - Buildings / 2024-06-20
+お題: https://atcoder.jp/contests/abc353/tasks/abc353_a
+```ruby
+# 入力: 4
+# 出力: 3 2 5 2
+
+# ビルの数を整数で受け取る
+building_count = gets.to_i
+
+# 各ビルの高さを整数の配列で受け取る
+building_heights = gets.split(' ').map(&:to_i) # [3, 2, 5, 2]
+
+# 配列の数でループ
+# 一番左の要素と比較し、より大きい数が見つかったらその index + 1 を出力する
+building_count.times do |i|
+  if building_heights[0] < building_heights[i]
+    p(i + 1)
+    exit
+  end
+end
+
+# 最後まで見つからなかったら、 -1 を出力する
+p -1
+```
+
 ## A - Subsegment Reverse / 2024-06-19
 お題: https://atcoder.jp/contests/abc356/tasks/abc356_a
 ```ruby
