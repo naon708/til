@@ -1,5 +1,7 @@
 プログラミング版、ワークアウト 💪 の記録
 
+テストケース: https://www.dropbox.com/sh/nx3tnilzqz7df8a/AAAYlTq2tiEHl5hsESw6-yfLa?e=2&dl=0
+
 ## A - Subsegment Reverse / 2024-06-19
 お題: https://atcoder.jp/contests/abc356/tasks/abc356_a
 ```ruby
