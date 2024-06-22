@@ -2,6 +2,41 @@
 
 テストケース: https://www.dropbox.com/sh/nx3tnilzqz7df8a/AAAYlTq2tiEHl5hsESw6-yfLa?e=2&dl=0
 
+## A - Sanitize Hands / 2024-06-22
+お題: https://atcoder.jp/contests/abc357/tasks/abc357_a
+```ruby
+# 入力: 5 10
+#       2 3 2 5 3
+# 出力: 3
+
+# 整数を受け取る
+alien_count, sanitize_remaining = gets.split(' ').map(&:to_i)
+
+# 整数の配列として受け取る
+hands_arr = gets.split(' ').map(&:to_i)
+
+# INFO: 宇宙人が5人いて、手を10本分消毒できる
+
+# 配列の最初の数が sanitize_remaining より大きい場合、 0 を返してプログラムを終了する
+if hands_arr.first > sanitize_remaining
+  p 0
+  exit
+end
+
+# 10から1人当たりの手の本数を引いていく
+# もし、マイナスになったら前の要素が何番目か返す
+hands_arr.each.with_index(1) do |hand, index|
+  sanitize_remaining -= hand
+  if sanitize_remaining.negative?
+    p index - 1
+    exit
+  end
+end
+
+# 引き切れたら最後の要素が何番目か（= 宇宙人の数）を出力する
+p alien_count
+```
+
 ## A - Buildings / 2024-06-20
 お題: https://atcoder.jp/contests/abc353/tasks/abc353_a
 ```ruby
