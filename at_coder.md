@@ -2,6 +2,31 @@
 
 テストケース: https://www.dropbox.com/sh/nx3tnilzqz7df8a/AAAYlTq2tiEHl5hsESw6-yfLa?e=2&dl=0
 
+## A - Zero Sum Game / 2024-06-27
+お題: https://atcoder.jp/contests/abc349/tasks/abc349_a
+```ruby
+### 入力
+# 4
+# 1 -2 -1
+
+### 出力
+# 2
+
+# ゲームは必ず 1 vs 1 なので、全員の点数の合計は 0 になるはず
+
+# 人数を整数で入力
+players_count = gets.to_i
+
+# 最後の人以外の点数を整数の配列で入力
+scores_except_last_player = gets.split(' ').map(&:to_i)
+
+# 最後のプレイヤー以外の点数の合計を算出
+total_value_except_last_player = scores_except_last_player.sum
+
+# 最後のプレイヤーを含めて合計 0 にしたいため、符号を反転させて出力
+pp -(total_value_except_last_player)
+```
+
 ## A - Sanitize Hands / 2024-06-22
 お題: https://atcoder.jp/contests/abc357/tasks/abc357_a
 ```ruby
