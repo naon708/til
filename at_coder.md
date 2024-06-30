@@ -2,6 +2,27 @@
 
 テストケース: https://www.dropbox.com/sh/nx3tnilzqz7df8a/AAAYlTq2tiEHl5hsESw6-yfLa?e=2&dl=0
 
+## A - AtCoder Line / 2024-06-29
+お題: https://atcoder.jp/contests/abc352/tasks/abc352_a
+```ruby
+# 入力: 7 6 1 3
+# 出力: Yes
+
+# N -> 駅の数
+# X -> 出発駅
+# Y -> 目的の駅
+# Z -> 通過する可能性のある駅
+
+# 各変数をすべて整数で入力
+station_count, departure_station_number, destination_station_number, station_number_that_may_be_passed = getpps.split(' ').map(&:to_i)
+
+# 三項演算子で range 変数に格納する（目的地と出発駅どちらが値が小さいか確認）
+stop_stations = departure_station_number < destination_station_number ? (departure_station_number..destination_station_number).to_a : (destination_station_number..departure_station_number).to_a
+
+# X 〜 Y の Range に Z の値が含まれていたら Yes 含まれていなかったら No を出力
+puts stop_stations.include?(station_number_that_may_be_passed) ? 'Yes' : 'No'
+```
+
 ## A - Zero Sum Game / 2024-06-27
 お題: https://atcoder.jp/contests/abc349/tasks/abc349_a
 ```ruby
