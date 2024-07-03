@@ -2,6 +2,23 @@
 
 テストケース: https://www.dropbox.com/sh/nx3tnilzqz7df8a/AAAYlTq2tiEHl5hsESw6-yfLa?e=2&dl=0
 
+## A - Penalty Kick
+お題: https://atcoder.jp/contests/abc348/tasks/abc348_a
+```ruby
+# 入力: 7
+# 出力: ooxooxo
+
+penalty_kick_count = gets.to_i
+penalty_kick_results = []
+
+1.upto(penalty_kick_count) do |i|
+  # 3の倍数だったら「x」、それ以外は「o」を追加する
+  (i % 3 == 0) ? penalty_kick_results << 'x' : penalty_kick_results << 'o'
+end
+
+puts penalty_kick_results.join
+```
+
 ## A - AtCoder Line / 2024-06-29
 お題: https://atcoder.jp/contests/abc352/tasks/abc352_a
 ```ruby
