@@ -2,7 +2,29 @@
 
 テストケース: https://www.dropbox.com/sh/nx3tnilzqz7df8a/AAAYlTq2tiEHl5hsESw6-yfLa?e=2&dl=0
 
-## A - Penalty Kick
+## A - Penalty Kick / 2024-07-06
+お題: https://atcoder.jp/contests/abc348/tasks/abc348_a
+
+前回の回答を TypeScript で書き直し
+```ts
+// 入力: 7
+// 出力: ooxooxo
+
+import { readFileSync } from "fs";
+
+const input: string[] = readFileSync('/dev/stdin', 'utf8').split('\n')
+const penaltyKickCount: number = Number(input[0])
+
+const penaltyKickResults: string[] = []
+
+for (let i = 1; i <= penaltyKickCount; i++) {
+  (i % 3 == 0) ? penaltyKickResults.push('x') : penaltyKickResults.push('o')
+}
+
+console.log(penaltyKickResults.join(''))
+```
+
+## A - Penalty Kick / 2024-07-03
 お題: https://atcoder.jp/contests/abc348/tasks/abc348_a
 ```ruby
 # 入力: 7
